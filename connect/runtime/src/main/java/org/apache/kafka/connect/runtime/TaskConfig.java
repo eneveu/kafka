@@ -25,10 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>
  * Configuration options for Tasks. These only include Kafka Connect system-level configuration
  * options.
- * </p>
  */
 public class TaskConfig extends AbstractConfig {
 

@@ -30,27 +30,27 @@ import java.util.Map;
  * JVM. An implementation of {@link javax.security.auth.spi.LoginModule} needs to be provided in the JAAS config file. The {@code
  * LoginModule} implementation should configure the {@link javax.security.auth.callback.CallbackHandler} with only {@link
  * javax.security.auth.callback.NameCallback} and {@link javax.security.auth.callback.PasswordCallback}.
- *
- * <p>To use this extension, one needs to add the following config in the {@code worker.properties}
+ * <p>
+ * To use this extension, one needs to add the following config in the {@code worker.properties}
  * <pre>
  *     rest.extension.classes = org.apache.kafka.connect.rest.basic.auth.extension.BasicAuthSecurityRestExtension
  * </pre>
- *
- * <p> An example JAAS config would look as below
- * <Pre>
+ * <p>
+ * An example JAAS config would look as below
+ * <pre>
  *         KafkaConnect {
  *              org.apache.kafka.connect.rest.basic.auth.extension.PropertyFileLoginModule required
  *              file="/mnt/secret/credentials.properties";
  *         };
- *</Pre>
- *
- * <p>This is a reference implementation of the {@link ConnectRestExtension} interface. It registers an implementation of {@link
+ * </pre>
+ * <p>
+ * This is a reference implementation of the {@link ConnectRestExtension} interface. It registers an implementation of {@link
  * javax.ws.rs.container.ContainerRequestFilter} that does JAAS based authentication of incoming Basic Auth credentials. {@link
  * ConnectRestExtension} implementations are loaded via the plugin class loader using {@link java.util.ServiceLoader} mechanism and hence
  * the packaged jar includes {@code META-INF/services/org.apache.kafka.connect.rest.extension.ConnectRestExtension} with the entry
  * {@code org.apache.kafka.connect.extension.auth.jaas.BasicAuthSecurityRestExtension}
- *
- * <p><b>NOTE: The implementation ships with a default {@link PropertyFileLoginModule} that helps authenticate the request against a
+ * <p>
+ * <b>NOTE: The implementation ships with a default {@link PropertyFileLoginModule} that helps authenticate the request against a
  * property file. {@link PropertyFileLoginModule} is NOT intended to be used in production since the credentials are stored in PLAINTEXT. One can use
  * this extension in production by using their own implementation of {@link javax.security.auth.spi.LoginModule} that authenticates against
  * stores like LDAP, DB, etc.</b>

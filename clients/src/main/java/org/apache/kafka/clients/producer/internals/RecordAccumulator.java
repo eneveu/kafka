@@ -170,7 +170,6 @@ public final class RecordAccumulator {
      * Add a record to the accumulator, return the append result
      * <p>
      * The append result will contain the future metadata, and flag for whether the appended batch is full or a new batch is created
-     * <p>
      *
      * @param tp The topic/partition to which this record is being sent
      * @param timestamp The timestamp of the record
@@ -247,7 +246,7 @@ public final class RecordAccumulator {
 
     /**
      *  Try to append to a ProducerBatch.
-     *
+     * <p>
      *  If it is full, we return null and a new batch is created. We also close the batch for record appends to free up
      *  resources like compression buffers. The batch will be fully closed (ie. the record batch headers will be written
      *  and memory records built) in one of the following cases (whichever comes first): right before send,
@@ -658,7 +657,7 @@ public final class RecordAccumulator {
 
     /**
      * Are there any threads currently waiting on a flush?
-     *
+     * <p>
      * package private for test
      */
     boolean flushInProgress() {

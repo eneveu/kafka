@@ -42,7 +42,7 @@ public enum PatternType {
 
     /**
      * In a filter, will perform pattern matching.
-     *
+     * <p>
      * e.g. Given a filter of {@code ResourcePatternFilter(TOPIC, "payments.received", MATCH)`}, the filter match
      * any {@link ResourcePattern} that matches topic 'payments.received'. This might include:
      * <ul>
@@ -55,16 +55,16 @@ public enum PatternType {
 
     /**
      * A literal resource name.
-     *
+     * <p>
      * A literal name defines the full name of a resource, e.g. topic with name 'foo', or group with name 'bob'.
-     *
+     * <p>
      * The special wildcard character {@code *} can be used to represent a resource with any name.
      */
     LITERAL((byte) 3),
 
     /**
      * A prefixed resource name.
-     *
+     * <p>
      * A prefixed name defines a prefix for a resource, e.g. topics with names that start with 'foo'.
      */
     PREFIXED((byte) 4);

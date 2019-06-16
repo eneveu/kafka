@@ -22,7 +22,7 @@ import java.nio.ByteBuffer;
 /**
  * A ByteBuffer-backed OutputStream that expands the internal ByteBuffer as required. Given this, the caller should
  * always access the underlying ByteBuffer via the {@link #buffer()} method until all writes are completed.
- *
+ * <p>
  * This class is typically used for 2 purposes:
  *
  * 1. Write to a ByteBuffer when there is a chance that we may need to expand it in order to fit all the desired data
@@ -44,7 +44,7 @@ public class ByteBufferOutputStream extends OutputStream {
      * Creates an instance of this class that will write to the received `buffer` up to its `limit`. If necessary to
      * satisfy `write` or `position` calls, larger buffers will be allocated so the {@link #buffer()} method may return
      * a different buffer than the received `buffer` parameter.
-     *
+     * <p>
      * Prefer one of the constructors that allocate the internal buffer for clearer semantics.
      */
     public ByteBufferOutputStream(ByteBuffer buffer) {

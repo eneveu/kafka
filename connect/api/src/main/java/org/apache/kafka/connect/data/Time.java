@@ -22,12 +22,10 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 /**
- * <p>
- *     A time representing a specific point in a day, not tied to any specific date. The corresponding Java type is a
- *     java.util.Date where only hours, minutes, seconds, and milliseconds can be non-zero. This effectively makes it a
- *     point in time during the first day after the Unix epoch. The underlying representation is an integer
- *     representing the number of milliseconds after midnight.
- * </p>
+ * A time representing a specific point in a day, not tied to any specific date. The corresponding Java type is a
+ * java.util.Date where only hours, minutes, seconds, and milliseconds can be non-zero. This effectively makes it a
+ * point in time during the first day after the Unix epoch. The underlying representation is an integer
+ * representing the number of milliseconds after midnight.
  */
 public class Time {
     public static final String LOGICAL_NAME = "org.apache.kafka.connect.data.Time";

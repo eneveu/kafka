@@ -49,7 +49,7 @@ import java.util.stream.Collectors;
  * A class for tracking the topics, partitions, and offsets for the consumer. A partition
  * is "assigned" either directly with {@link #assignFromUser(Set)} (manual assignment)
  * or with {@link #assignFromSubscribed(Collection)} (automatic assignment from subscription).
- *
+ * <p>
  * Once assigned, the partition is not considered "fetchable" until its initial position has
  * been set with {@link #seekValidated(TopicPartition, FetchPosition)}. Fetchable partitions track a fetch
  * position which is used to set the offset of the next fetch, and a consumed position
@@ -57,10 +57,10 @@ import java.util.stream.Collectors;
  * from a partition through {@link #pause(TopicPartition)} without affecting the fetched/consumed
  * offsets. The partition will remain unfetchable until the {@link #resume(TopicPartition)} is
  * used. You can also query the pause state independently with {@link #isPaused(TopicPartition)}.
- *
+ * <p>
  * Note that pause state as well as fetch/consumed positions are not preserved when partition
  * assignment is changed whether directly by the user or through a group rebalance.
- *
+ * <p>
  * Thread Safety: this class is thread-safe.
  */
 public class SubscriptionState {
@@ -279,7 +279,6 @@ public class SubscriptionState {
 
     /**
      * Check whether pattern subscription is in use.
-     *
      */
     synchronized boolean hasPatternSubscription() {
         return this.subscriptionType == SubscriptionType.AUTO_PATTERN;
@@ -955,10 +954,10 @@ public class SubscriptionState {
 
     /**
      * Represents the position of a partition subscription.
-     *
+     * <p>
      * This includes the offset and epoch from the last record in
      * the batch from a FetchResponse. It also includes the leader epoch at the time the batch was consumed.
-     *
+     * <p>
      * The last fetch epoch is used to
      */
     public static class FetchPosition {

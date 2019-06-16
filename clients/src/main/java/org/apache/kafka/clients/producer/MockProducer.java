@@ -104,7 +104,7 @@ public class MockProducer<K, V> implements Producer<K, V> {
 
     /**
      * Create a new mock producer with invented metadata the given autoComplete setting and key\value serializers.
-     *
+     * <p>
      * Equivalent to {@link #MockProducer(Cluster, boolean, Partitioner, Serializer, Serializer)} new MockProducer(Cluster.empty(), autoComplete, new DefaultPartitioner(), keySerializer, valueSerializer)}
      */
     public MockProducer(final boolean autoComplete,
@@ -115,7 +115,7 @@ public class MockProducer<K, V> implements Producer<K, V> {
 
     /**
      * Create a new mock producer with invented metadata the given autoComplete setting, partitioner and key\value serializers.
-     *
+     * <p>
      * Equivalent to {@link #MockProducer(Cluster, boolean, Partitioner, Serializer, Serializer)} new MockProducer(Cluster.empty(), autoComplete, partitioner, keySerializer, valueSerializer)}
      */
     public MockProducer(final boolean autoComplete,
@@ -127,7 +127,7 @@ public class MockProducer<K, V> implements Producer<K, V> {
 
     /**
      * Create a new mock producer with invented metadata.
-     *
+     * <p>
      * Equivalent to {@link #MockProducer(Cluster, boolean, Partitioner, Serializer, Serializer)} new MockProducer(Cluster.empty(), false, null, null, null)}
      */
     public MockProducer() {
@@ -381,7 +381,6 @@ public class MockProducer<K, V> implements Producer<K, V> {
         return new ArrayList<>(this.consumerGroupOffsets);
     }
     /**
-     *
      * Clear the stored history of sent records, consumer group offsets, and transactional state
      */
     public synchronized void clear() {

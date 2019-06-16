@@ -22,11 +22,11 @@ import org.apache.kafka.common.header.Headers;
 
 /**
  * A Serializer that has access to the headers associated with the record.
- *
+ * <p>
  * Prefer {@link Serializer} if access to the headers is not required. Once Kafka drops support for Java 7, the
  * {@code serialize()} method introduced by this interface will be added to Serializer with a default implementation
  * so that backwards compatibility is maintained. This interface may be deprecated once that happens.
- *
+ * <p>
  * A class that implements this interface is expected to have a constructor with no parameters.
  * @param <T>
  * @deprecated This class has been deprecated and will be removed in a future release. Please use {@link Serializer} instead.

@@ -23,14 +23,14 @@ import java.security.Principal;
 import static java.util.Objects.requireNonNull;
 
 /**
- * <p>Principals in Kafka are defined by a type and a name. The principal type will always be <code>"User"</code>
+ * Principals in Kafka are defined by a type and a name. The principal type will always be <code>"User"</code>
  * for the simple authorizer that is enabled by default, but custom authorizers can leverage different
  * principal types (such as to enable group or role-based ACLs). The {@link KafkaPrincipalBuilder} interface
  * is used when you need to derive a different principal type from the authentication context, or when
  * you need to represent relations between different principals. For example, you could extend
  * {@link KafkaPrincipal} in order to link a user principal to one or more role principals.
- *
- * <p>For custom extensions of {@link KafkaPrincipal}, there two key points to keep in mind:
+ * <p>
+ * For custom extensions of {@link KafkaPrincipal}, there two key points to keep in mind:
  * <ol>
  * <li>To be compatible with the ACL APIs provided by Kafka (including the command line tool), each ACL
  *    can only represent a permission granted to a single principal (consisting of a principal type and name).

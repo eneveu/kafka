@@ -37,7 +37,7 @@ import static org.apache.kafka.clients.consumer.internals.ConsumerProtocol.CONSU
  * as the group coordinator. The coordinator selects one member to perform the group assignment and
  * propagates the subscriptions of all members to it. Then {@link #assign(Cluster, Map)} is called
  * to perform the assignment and the results are forwarded back to each respective members
- *
+ * <p>
  * In some cases, it is useful to forward additional metadata to the assignor in order to make
  * assignment decisions. For this, you can override {@link #subscription(Set)} and provide custom
  * userData in the returned Subscription. For example, to have a rack-aware assignor, an implementation

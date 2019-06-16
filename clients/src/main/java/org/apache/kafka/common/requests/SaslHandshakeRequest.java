@@ -26,7 +26,7 @@ import java.nio.ByteBuffer;
 
 /**
  * Request from SASL client containing client SASL mechanism.
- * <p/>
+ * <p>
  * For interoperability with Kafka 0.9.0.x, the mechanism flow may be omitted when using GSSAPI. Hence
  * this request should not conflict with the first GSSAPI client packet. For GSSAPI, the first context
  * establishment packet starts with byte 0x60 (APPLICATION-0 tag) followed by a variable-length encoded size.

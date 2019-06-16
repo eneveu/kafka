@@ -353,7 +353,7 @@ public class KafkaChannel implements AutoCloseable {
 
     /**
      * Returns the address to which this channel's socket is connected or `null` if the socket has never been connected.
-     *
+     * <p>
      * If the socket was connected prior to being closed, then this method will continue to return the
      * connected address after the socket is closed.
      */
@@ -489,7 +489,6 @@ public class KafkaChannel implements AutoCloseable {
      *            nanoseconds as per {@code System.nanoTime()} and is therefore only
      *            useful when compared to such a value -- it's absolute value is
      *            meaningless.
-     * 
      * @return true if this is a server-side connection that has an expiration time
      *         and at least 1 second has passed since the prior re-authentication
      *         (if any) started to indicate that the re-authentication process has
@@ -546,7 +545,6 @@ public class KafkaChannel implements AutoCloseable {
      *            nanoseconds as per {@code System.nanoTime()} and is therefore only
      *            useful when compared to such a value -- it's absolute value is
      *            meaningless.
-     * 
      * @return true if this is a client-side connection that is not muted, there is
      *         no in-progress write, and there is a session expiration time defined
      *         that has past to indicate that the re-authentication process has

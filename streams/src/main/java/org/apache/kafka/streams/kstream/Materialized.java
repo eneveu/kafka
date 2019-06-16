@@ -105,7 +105,7 @@ public class Materialized<K, V, S extends StateStore> {
 
     /**
      * Materialize a {@link WindowStore} using the provided {@link WindowBytesStoreSupplier}.
-     *
+     * <p>
      * Important: Custom subclasses are allowed here, but they should respect the retention contract:
      * Window stores are required to retain windows at least as long as (window size + window grace period).
      * Stores constructed via {@link org.apache.kafka.streams.state.Stores} already satisfy this contract.
@@ -122,7 +122,7 @@ public class Materialized<K, V, S extends StateStore> {
 
     /**
      * Materialize a {@link SessionStore} using the provided {@link SessionBytesStoreSupplier}.
-     *
+     * <p>
      * Important: Custom subclasses are allowed here, but they should respect the retention contract:
      * Session stores are required to retain windows at least as long as (session inactivity gap + session grace period).
      * Stores constructed via {@link org.apache.kafka.streams.state.Stores} already satisfy this contract.
@@ -237,10 +237,10 @@ public class Materialized<K, V, S extends StateStore> {
 
     /**
      * Configure retention period for window and session stores. Ignored for key/value stores.
-     *
+     * <p>
      * Overridden by pre-configured store suppliers
      * ({@link Materialized#as(SessionBytesStoreSupplier)} or {@link Materialized#as(WindowBytesStoreSupplier)}).
-     *
+     * <p>
      * Note that the retention period must be at least long enough to contain the windowed data's entire life cycle,
      * from window-start through window-end, and for the entire grace period.
      *

@@ -25,7 +25,7 @@ import org.apache.kafka.common.security.token.delegation.DelegationToken;
 
 /**
  * The result of the {@link KafkaAdminClient#describeDelegationToken(DescribeDelegationTokenOptions)} call.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

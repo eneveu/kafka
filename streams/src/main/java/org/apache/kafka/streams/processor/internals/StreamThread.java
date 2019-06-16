@@ -67,6 +67,7 @@ public class StreamThread extends Thread {
 
     /**
      * Stream thread states are the possible states that a stream thread can be in.
+     * <p>
      * A thread must only be in one state at a time
      * The expected state transitions with the following defined states is:
      *
@@ -1015,7 +1016,7 @@ public class StreamThread extends Thread {
 
     /**
      * Try to commit all active tasks owned by this thread.
-     *
+     * <p>
      * Visible for testing.
      *
      * @throws TaskMigratedException if committing offsets failed (non-EOS)

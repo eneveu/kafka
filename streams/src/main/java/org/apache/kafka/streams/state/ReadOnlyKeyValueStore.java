@@ -66,7 +66,7 @@ public interface ReadOnlyKeyValueStore<K, V> {
 
     /**
      * Return an approximate count of key-value mappings in this store.
-     *
+     * <p>
      * The count is not guaranteed to be exact in order to accommodate stores
      * where an exact count is expensive to calculate.
      *

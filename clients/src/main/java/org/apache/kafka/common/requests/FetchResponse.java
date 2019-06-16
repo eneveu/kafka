@@ -52,7 +52,7 @@ import static org.apache.kafka.common.requests.FetchMetadata.INVALID_SESSION_ID;
 
 /**
  * This wrapper supports all versions of the Fetch API
- *
+ * <p>
  * Possible error codes:
  *
  * - {@link Errors#OFFSET_OUT_OF_RANGE} If the fetch offset is out of range for a requested partition

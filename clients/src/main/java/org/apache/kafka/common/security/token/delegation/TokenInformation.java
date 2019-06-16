@@ -25,7 +25,6 @@ import java.util.Objects;
 
 /**
  * A class representing a delegation token details.
- *
  */
 @InterfaceStability.Evolving
 public class TokenInformation {

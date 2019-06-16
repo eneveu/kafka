@@ -212,10 +212,10 @@ public class ClusterConfigState {
     /**
      * Get the set of connectors which have inconsistent data in this snapshot. These inconsistencies can occur due to
      * partially completed writes combined with log compaction.
-     *
+     * <p>
      * Connectors in this set will appear in the output of {@link #connectors()} since their connector configuration is
      * available, but not in the output of {@link #taskConfig(ConnectorTaskId)} since the task configs are incomplete.
-     *
+     * <p>
      * When a worker detects a connector in this state, it should request that the connector regenerate its task
      * configurations.
      *

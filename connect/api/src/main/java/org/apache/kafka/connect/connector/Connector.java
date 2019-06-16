@@ -26,12 +26,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>
  * Connectors manage integration of Kafka Connect with another system, either as an input that ingests
  * data into Kafka or an output that passes data to an external system. Implementations should
  * not use this class directly; they should inherit from {@link org.apache.kafka.connect.source.SourceConnector SourceConnector}
  * or {@link org.apache.kafka.connect.sink.SinkConnector SinkConnector}.
- * </p>
  * <p>
  * Connectors have two primary tasks. First, given some configuration, they are responsible for
  * creating configurations for a set of {@link Task}s that split up the data processing. For
@@ -41,7 +39,6 @@ import java.util.Map;
  * previous example, the connector might periodically check for new tables and notify Kafka Connect of
  * additions and deletions. Kafka Connect will then request new configurations and update the running
  * Tasks.
- * </p>
  */
 public abstract class Connector implements Versioned {
 
@@ -58,16 +55,13 @@ public abstract class Connector implements Versioned {
     }
 
     /**
-     * <p>
      * Initialize this connector, using the provided ConnectorContext to notify the runtime of
      * input configuration changes and using the provided set of Task configurations.
      * This version is only used to recover from failures.
-     * </p>
      * <p>
      * The default implementation ignores the provided Task configurations. During recovery, Kafka Connect will request
      * an updated set of configurations and update the running Tasks appropriately. However, Connectors should
      * implement special handling of this case if it will avoid unnecessary changes to running Tasks.
-     * </p>
      *
      * @param ctx context object used to interact with the Kafka Connect runtime
      * @param taskConfigs existing task configurations, which may be used when generating new task configs to avoid

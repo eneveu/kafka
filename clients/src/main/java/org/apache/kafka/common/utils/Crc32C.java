@@ -25,11 +25,11 @@ import java.util.zip.Checksum;
 
 /**
  * A class that can be used to compute the CRC32C (Castagnoli) of a ByteBuffer or array of bytes.
- *
+ * <p>
  * We use java.util.zip.CRC32C (introduced in Java 9) if it is available and fallback to PureJavaCrc32C, otherwise.
  * java.util.zip.CRC32C is significantly faster on reasonably modern CPUs as it uses the CRC32 instruction introduced
  * in SSE4.2.
- *
+ * <p>
  * NOTE: This class is intended for INTERNAL usage only within Kafka.
  */
 public final class Crc32C {

@@ -44,15 +44,12 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * <p>
  * Command line utility that runs Kafka Connect as a standalone process. In this mode, work is not
  * distributed. Instead, all the normal Connect machinery works within a single process. This is
  * useful for ad hoc, small, or experimental jobs.
- * </p>
  * <p>
  * By default, no job configs or offset data is persistent. You can make jobs persistent and
  * fault tolerant by overriding the settings to use file storage for both.
- * </p>
  */
 public class ConnectStandalone {
     private static final Logger log = LoggerFactory.getLogger(ConnectStandalone.class);

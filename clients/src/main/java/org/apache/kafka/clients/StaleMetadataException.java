@@ -21,7 +21,7 @@ import org.apache.kafka.common.errors.InvalidMetadataException;
 /**
  * Thrown when current metadata cannot be used. This is often used as a way to trigger a metadata
  * update before retrying another operation.
- *
+ * <p>
  * Note: this is not a public API.
  */
 public class StaleMetadataException extends InvalidMetadataException {

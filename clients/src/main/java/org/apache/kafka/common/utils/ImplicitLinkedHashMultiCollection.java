@@ -25,21 +25,21 @@ import java.util.List;
 /**
  * A memory-efficient hash multiset which tracks the order of insertion of elements.
  * See org.apache.kafka.common.utils.ImplicitLinkedHashCollection for implementation details.
- *
+ * <p>
  * This class is a multi-set because it allows multiple elements to be inserted that are
  * equal to each other.
- *
+ * <p>
  * We use reference equality when adding elements to the set.  A new element A can
  * be added if there is no existing element B such that A == B.  If an element B
  * exists such that A.equals(B), A will still be added.
- *
+ * <p>
  * When deleting an element A from the set, we will try to delete the element B such
  * that A == B.  If no such element can be found, we will try to delete an element B
  * such that A.equals(B).
- *
+ * <p>
  * contains() and find() are unchanged from the base class-- they will look for element
  * based on object equality, not reference equality.
- *
+ * <p>
  * This multiset does not allow null elements.  It does not have internal synchronization.
  */
 public class ImplicitLinkedHashMultiCollection<E extends ImplicitLinkedHashCollection.Element>
@@ -86,7 +86,6 @@ public class ImplicitLinkedHashMultiCollection<E extends ImplicitLinkedHashColle
      * Find an element matching an example element.
      *
      * @param key               The element to match.
-     *
      * @return                  The match index, or INVALID_INDEX if no match was found.
      */
     @Override
@@ -116,7 +115,6 @@ public class ImplicitLinkedHashMultiCollection<E extends ImplicitLinkedHashColle
      * key.equals(e) and key.hashCode() == e.hashCode().
      *
      * @param key       The element to match.
-     *
      * @return          All of the matching elements.
      */
     final public List<E> findAll(E key) {

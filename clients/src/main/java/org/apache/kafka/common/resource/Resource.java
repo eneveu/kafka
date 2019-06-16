@@ -23,7 +23,7 @@ import java.util.Objects;
 
 /**
  * Represents a cluster resource with a tuple of (type, name).
- *
+ * <p>
  * The API for this class is still evolving and we may break compatibility in minor releases, if necessary.
  */
 @InterfaceStability.Evolving

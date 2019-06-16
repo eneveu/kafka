@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * A base class for running a Unix command.
- *
+ * <p>
  * <code>Shell</code> can be used to run unix commands like <code>du</code> or
  * <code>df</code>.
  */
@@ -174,7 +174,7 @@ abstract public class Shell {
 
     /**
      * A simple shell command executor.
-     *
+     * <p>
      * <code>ShellCommandExecutor</code>should be used in cases where the output
      * of the command needs no explicit parsing and where the command, working
      * directory and the environment remains unchanged. The output of the command

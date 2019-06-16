@@ -41,12 +41,12 @@ import static org.apache.kafka.common.requests.FetchMetadata.INVALID_SESSION_ID;
 
 /**
  * FetchSessionHandler maintains the fetch session state for connecting to a broker.
- *
+ * <p>
  * Using the protocol outlined by KIP-227, clients can create incremental fetch sessions.
  * These sessions allow the client to fetch information about a set of partition over
  * and over, without explicitly enumerating all the partitions in the request and the
  * response.
- *
+ * <p>
  * FetchSessionHandler tracks the partitions which are in the session.  It also
  * determines which partitions need to be included in each fetch request, and what
  * the attached fetch session metadata should be for each request.  The corresponding
@@ -174,14 +174,14 @@ public class FetchSessionHandler {
     public class Builder {
         /**
          * The next partitions which we want to fetch.
-         *
+         * <p>
          * It is important to maintain the insertion order of this list by using a LinkedHashMap rather
          * than a regular Map.
-         *
+         * <p>
          * One reason is that when dealing with FULL fetch requests, if there is not enough response
          * space to return data from all partitions, the server will only return data from partitions
          * early in this list.
-         *
+         * <p>
          * Another reason is because we make use of the list ordering to optimize the preparation of
          * incremental fetch requests (see below).
          */
@@ -432,7 +432,7 @@ public class FetchSessionHandler {
 
     /**
      * Handle an error sending the prepared request.
-     *
+     * <p>
      * When a network error occurs, we close any existing fetch session on our next request,
      * and try to create a new session.
      *

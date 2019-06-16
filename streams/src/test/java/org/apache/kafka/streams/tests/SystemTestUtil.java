@@ -34,7 +34,7 @@ public class SystemTestUtil {
     /**
      * Takes a string with keys and values separated by '=' and each key value pair
      * separated by ',' for example max.block.ms=5000,retries=6,request.timeout.ms=6000
-     *
+     * <p>
      * This class makes it easier to pass configs from the system test in python to the Java test.
      *
      * @param formattedConfigs the formatted config string

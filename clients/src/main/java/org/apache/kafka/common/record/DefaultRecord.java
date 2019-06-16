@@ -35,8 +35,9 @@ import java.util.zip.Checksum;
 import static org.apache.kafka.common.record.RecordBatch.MAGIC_VALUE_V2;
 
 /**
- * This class implements the inner record format for magic 2 and above. The schema is as follows:
- *
+ * This class implements the inner record format for magic 2 and above.
+ * <p>
+ * The schema is as follows:
  *
  * Record =>
  *   Length => Varint
@@ -48,17 +49,17 @@ import static org.apache.kafka.common.record.RecordBatch.MAGIC_VALUE_V2;
  *   Headers => [HeaderKey HeaderValue]
  *     HeaderKey => String
  *     HeaderValue => Bytes
- *
+ * <p>
  * Note that in this schema, the Bytes and String types use a variable length integer to represent
  * the length of the field. The array type used for the headers also uses a Varint for the number of
  * headers.
- *
+ * <p>
  * The current record attributes are depicted below:
- *
+ * <p>
  *  ----------------
  *  | Unused (0-7) |
  *  ----------------
- *
+ * <p>
  * The offset and timestamp deltas compute the difference relative to the base offset and
  * base timestamp of the batch that this record is contained in.
  */

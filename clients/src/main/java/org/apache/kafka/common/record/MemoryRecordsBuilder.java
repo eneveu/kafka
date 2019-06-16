@@ -30,9 +30,10 @@ import static org.apache.kafka.common.utils.Utils.wrapNullable;
 
 /**
  * This class is used to write new log data in memory, i.e. this is the write path for {@link MemoryRecords}.
+ * <p>
  * It transparently handles compression and exposes methods for appending new records, possibly with message
  * format conversion.
- *
+ * <p>
  * In cases where keeping memory retention low is important and there's a gap between the time that record appends stop
  * and the builder is closed (e.g. the Producer), it's important to call `closeForRecordAppends` when the former happens.
  * This will release resources like compression buffers that can be relatively large (64 KB for LZ4).
@@ -206,10 +207,10 @@ public class MemoryRecordsBuilder implements AutoCloseable {
 
     /**
      * Get the max timestamp and its offset. The details of the offset returned are a bit subtle.
-     *
+     * <p>
      * If the log append time is used, the offset will be the last offset unless no compression is used and
      * the message format version is 0 or 1, in which case, it will be the first offset.
-     *
+     * <p>
      * If create time is used, the offset will be the last offset unless no compression is used and the message
      * format version is 0 or 1, in which case, it will be the offset of the record with the max timestamp.
      *
@@ -714,7 +715,7 @@ public class MemoryRecordsBuilder implements AutoCloseable {
     /**
      * Check if we have room for a new record containing the given key/value pair. If no records have been
      * appended, then this returns true.
-     *
+     * <p>
      * Note that the return value is based on the estimate of the bytes written to the compressor, which may not be
      * accurate if compression is used. When this happens, the following append may cause dynamic buffer
      * re-allocation in the underlying byte buffer stream.

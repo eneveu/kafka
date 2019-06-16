@@ -25,19 +25,19 @@ import java.util.Objects;
 
 /**
  * A utility for defining Mapped Diagnostic Context (MDC) for SLF4J logs.
- *
- * <p>{@link LoggingContext} instances should be created in a try-with-resources block to ensure
+ * <p>
+ * {@link LoggingContext} instances should be created in a try-with-resources block to ensure
  * that the logging context is properly closed. The only exception is the logging context created
  * upon thread creation that is to be used for the entire lifetime of the thread.
- *
- * <p>Any logger created on the thread will inherit the MDC context, so this mechanism is ideal for
+ * <p>
+ * Any logger created on the thread will inherit the MDC context, so this mechanism is ideal for
  * providing additional information in the log messages without requiring connector
  * implementations to use a specific Connect API or SLF4J API. {@link LoggingContext#close()}
  * will also properly restore the Connect MDC parameters to their state just prior to when the
  * LoggingContext was created. Use {@link #clear()} to remove all MDC parameters from the
  * current thread context.
- *
- * <p>Compare this approach to {@link org.apache.kafka.common.utils.LogContext}, which must be
+ * <p>
+ * Compare this approach to {@link org.apache.kafka.common.utils.LogContext}, which must be
  * used to create a new {@link org.slf4j.Logger} instance pre-configured with the desired prefix.
  * Currently LogContext does not allow the prefix to be changed, and it requires that all
  * components use the LogContext to create their Logger instance.
@@ -163,8 +163,8 @@ public final class LoggingContext implements AutoCloseable {
      *       task; here "n" is the * zero-based task number
      *   <li>"<code>worker</code>" for the creation and usage of connector instances
      * </ul>
-     *
-     * <p>The following are examples of the connector context for a connector named "my-connector":
+     * <p>
+     * The following are examples of the connector context for a connector named "my-connector":
      *
      * <ul>
      *   <li>`[my-connector|worker]` - used on log messages where the Connect worker is

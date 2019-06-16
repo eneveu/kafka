@@ -175,7 +175,7 @@ public class SslTransportLayerTest {
      * certificate chain rooted in an appropriate CA) are not possible. If a
      * server has such knowledge (typically from some source external to
      * HTTP or TLS) it SHOULD check the identity as described above.</blockquote>
-     *
+     * <p>
      * However, Java SSL engine does not perform any endpoint validation for client IP address.
      * Hence it is safe to avoid reverse DNS lookup while creating the SSL engine. This test checks
      * that client validation does not fail even if the client certificate has an invalid hostname.

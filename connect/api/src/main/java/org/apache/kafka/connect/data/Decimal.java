@@ -22,20 +22,16 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
+ * An arbitrary-precision signed decimal number. The value is unscaled * 10 ^ -scale where:
+ * <ul>
+ *     <li>unscaled is an integer </li>
+ *     <li>scale is an integer representing how many digits the decimal point should be shifted on the unscaled value</li>
+ * </ul>
  * <p>
- *     An arbitrary-precision signed decimal number. The value is unscaled * 10 ^ -scale where:
- *     <ul>
- *         <li>unscaled is an integer </li>
- *         <li>scale is an integer representing how many digits the decimal point should be shifted on the unscaled value</li>
- *     </ul>
- * </p>
+ * Decimal does not provide a fixed schema because it is parameterized by the scale, which is fixed on the schema
+ * rather than being part of the value.
  * <p>
- *     Decimal does not provide a fixed schema because it is parameterized by the scale, which is fixed on the schema
- *     rather than being part of the value.
- * </p>
- * <p>
- *     The underlying representation of this type is bytes containing a two's complement integer
- * </p>
+ * The underlying representation of this type is bytes containing a two's complement integer
  */
 public class Decimal {
     public static final String LOGICAL_NAME = "org.apache.kafka.connect.data.Decimal";

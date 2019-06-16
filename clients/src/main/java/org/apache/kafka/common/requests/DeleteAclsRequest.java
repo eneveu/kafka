@@ -57,7 +57,7 @@ public class DeleteAclsRequest extends AbstractRequest {
     /**
      * V1 sees a new `RESOURCE_PATTERN_TYPE_FILTER` that controls how the filter handles different resource pattern types.
      * For more info, see {@link PatternType}.
-     *
+     * <p>
      * Also, when the quota is violated, brokers will respond to a version 1 or later request before throttling.
      */
     private static final Schema DELETE_ACLS_REQUEST_V1 = new Schema(

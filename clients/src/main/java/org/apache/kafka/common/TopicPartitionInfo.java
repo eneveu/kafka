@@ -65,7 +65,7 @@ public class TopicPartitionInfo {
     /**
      * Return the replicas of the partition in the same order as the replica assignment. The preferred replica is the
      * head of the list.
-     *
+     * <p>
      * Brokers with version lower than 0.11.0.0 return the replicas in unspecified order due to a bug.
      */
     public List<Node> replicas() {

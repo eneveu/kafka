@@ -34,9 +34,8 @@ public class AlterReplicaLogDirsResult {
     }
 
     /**
-     *
      * Return a map from replica to future which can be used to check the status of individual replica movement.
-     *
+     * <p>
      * Possible error code:
      *
      * LOG_DIR_NOT_FOUND (57)

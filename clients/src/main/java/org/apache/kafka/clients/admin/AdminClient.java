@@ -36,10 +36,10 @@ import org.apache.kafka.common.config.ConfigResource;
 
 /**
  * The administrative client for Kafka, which supports managing and inspecting topics, brokers, configurations and ACLs.
- *
+ * <p>
  * The minimum broker version required is 0.10.0.0. Methods with stricter requirements will specify the minimum broker
  * version required.
- *
+ * <p>
  * This client was introduced in 0.11.0.0 and the API is still evolving. We will try to evolve the API in a compatible
  * manner, but we reserve the right to make breaking changes in minor releases, if necessary. We will update the
  * {@code InterfaceStability} annotation and this notice once the API is considered stable.
@@ -69,7 +69,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Close the AdminClient and release all associated resources.
-     *
+     * <p>
      * See {@link AdminClient#close(long, TimeUnit)}
      */
     @Override
@@ -79,7 +79,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Close the AdminClient and release all associated resources.
-     *
+     * <p>
      * The close operation has a grace period during which current operations will be allowed to
      * complete, specified by the given duration and time unit.
      * New operations will not be accepted during the grace period.  Once the grace period is over,
@@ -96,7 +96,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Close the AdminClient and release all associated resources.
-     *
+     * <p>
      * The close operation has a grace period during which current operations will be allowed to
      * complete, specified by the given duration.
      * New operations will not be accepted during the grace period.  Once the grace period is over,
@@ -108,10 +108,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Create a batch of new topics with the default options.
-     *
+     * <p>
      * This is a convenience method for #{@link #createTopics(Collection, CreateTopicsOptions)} with default options.
      * See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.10.1.0 or higher.
      *
      * @param newTopics         The new topics to create.
@@ -123,14 +123,14 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Create a batch of new topics.
-     *
+     * <p>
      * This operation is not transactional so it may succeed for some topics while fail for others.
-     *
+     * <p>
      * It may take several seconds after {@code CreateTopicsResult} returns
      * success for all the brokers to become aware that the topics have been created.
      * During this time, {@link AdminClient#listTopics()} and {@link AdminClient#describeTopics(Collection)}
      * may not return information about the new topics.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.10.1.0 or higher. The validateOnly option is supported
      * from version 0.10.2.0.
      *
@@ -144,7 +144,7 @@ public abstract class AdminClient implements AutoCloseable {
     /**
      * This is a convenience method for #{@link AdminClient#deleteTopics(Collection, DeleteTopicsOptions)}
      * with default options. See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.10.1.0 or higher.
      *
      * @param topics            The topic names to delete.
@@ -156,18 +156,18 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Delete a batch of topics.
-     *
+     * <p>
      * This operation is not transactional so it may succeed for some topics while fail for others.
-     *
+     * <p>
      * It may take several seconds after the {@code DeleteTopicsResult} returns
      * success for all the brokers to become aware that the topics are gone.
      * During this time, AdminClient#listTopics and AdminClient#describeTopics
      * may continue to return information about the deleted topics.
-     *
+     * <p>
      * If delete.topic.enable is false on the brokers, deleteTopics will mark
      * the topics for deletion, but not actually delete them.  The futures will
      * return successfully in this case.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.10.1.0 or higher.
      *
      * @param topics            The topic names to delete.
@@ -178,7 +178,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * List the topics available in the cluster with the default options.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#listTopics(ListTopicsOptions)} with default options.
      * See the overload for more details.
      *
@@ -198,12 +198,11 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Describe some topics in the cluster, with the default options.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#describeTopics(Collection, DescribeTopicsOptions)} with
      * default options. See the overload for more details.
      *
      * @param topicNames        The names of the topics to describe.
-     *
      * @return                  The DescribeTopicsResult.
      */
     public DescribeTopicsResult describeTopics(Collection<String> topicNames) {
@@ -215,7 +214,6 @@ public abstract class AdminClient implements AutoCloseable {
      *
      * @param topicNames        The names of the topics to describe.
      * @param options           The options to use when describing the topic.
-     *
      * @return                  The DescribeTopicsResult.
      */
     public abstract DescribeTopicsResult describeTopics(Collection<String> topicNames,
@@ -223,7 +221,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Get information about the nodes in the cluster, using the default options.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#describeCluster(DescribeClusterOptions)} with default options.
      * See the overload for more details.
      *
@@ -244,7 +242,7 @@ public abstract class AdminClient implements AutoCloseable {
     /**
      * This is a convenience method for #{@link AdminClient#describeAcls(AclBindingFilter, DescribeAclsOptions)} with
      * default options. See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param filter            The filter to use.
@@ -256,10 +254,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Lists access control lists (ACLs) according to the supplied filter.
-     *
+     * <p>
      * Note: it may take some time for changes made by createAcls or deleteAcls to be reflected
      * in the output of describeAcls.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param filter            The filter to use.
@@ -271,7 +269,7 @@ public abstract class AdminClient implements AutoCloseable {
     /**
      * This is a convenience method for #{@link AdminClient#createAcls(Collection, CreateAclsOptions)} with
      * default options. See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param acls              The ACLs to create
@@ -283,12 +281,12 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Creates access control lists (ACLs) which are bound to specific resources.
-     *
+     * <p>
      * This operation is not transactional so it may succeed for some ACLs while fail for others.
-     *
+     * <p>
      * If you attempt to add an ACL that duplicates an existing ACL, no error will be raised, but
      * no changes will be made.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param acls              The ACLs to create
@@ -300,7 +298,7 @@ public abstract class AdminClient implements AutoCloseable {
     /**
      * This is a convenience method for #{@link AdminClient#deleteAcls(Collection, DeleteAclsOptions)} with default options.
      * See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param filters           The filters to use.
@@ -312,9 +310,9 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Deletes access control lists (ACLs) according to the supplied filters.
-     *
+     * <p>
      * This operation is not transactional so it may succeed for some ACLs while fail for others.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param filters           The filters to use.
@@ -326,10 +324,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Get the configuration for the specified resources with the default options.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#describeConfigs(Collection, DescribeConfigsOptions)} with default options.
      * See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param resources         The resources (topic and broker resource types are currently supported)
@@ -341,15 +339,15 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Get the configuration for the specified resources.
-     *
+     * <p>
      * The returned configuration includes default values and the isDefault() method can be used to distinguish them
      * from user supplied values.
-     *
+     * <p>
      * The value of config entries where isSensitive() is true is always {@code null} so that sensitive information
      * is not disclosed.
-     *
+     * <p>
      * Config entries where isReadOnly() is true cannot be updated.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param resources         The resources (topic and broker resource types are currently supported)
@@ -361,10 +359,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Update the configuration for the specified resources with the default options.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#alterConfigs(Map, AlterConfigsOptions)} with default options.
      * See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param configs         The resources with their configs (topic is the only resource type with configs that can
@@ -379,10 +377,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Update the configuration for the specified resources with the default options.
-     *
+     * <p>
      * Updates are not transactional so they may succeed for some resources while fail for others. The configs for
      * a particular resource are updated atomically.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param configs         The resources with their configs (topic is the only resource type with configs that can
@@ -396,10 +394,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Incrementally updates the configuration for the specified resources with default options.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#incrementalAlterConfigs(Map, AlterConfigsOptions)} with default options.
      * See the overload for more details.*
-     *
+     * <p>
      * This operation is supported by brokers with version 2.3.0 or higher.
      *
      * @param configs         The resources with their configs
@@ -412,12 +410,12 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Incrementally update the configuration for the specified resources.
-     *
+     * <p>
      * Updates are not transactional so they may succeed for some resources while fail for others. The configs for
      * a particular resource are updated atomically.
-     *
-     * <p>The following exceptions can be anticipated when calling {@code get()} on the futures obtained from
-     * the returned {@code IncrementalAlterConfigsResult}:</p>
+     * <p>
+     * The following exceptions can be anticipated when calling {@code get()} on the futures obtained from
+     * the returned {@code IncrementalAlterConfigsResult}:
      * <ul>
      *   <li>{@link org.apache.kafka.common.errors.ClusterAuthorizationException}
      *   if the authenticated user didn't have alter access to the cluster.</li>
@@ -441,12 +439,12 @@ public abstract class AdminClient implements AutoCloseable {
      * shows REPLICA_NOT_AVAILABLE for the given replica and the replica will be created in the given log directory on the
      * broker when it is created later. If the replica already exists on the broker, the replica will be moved to the given
      * log directory if it is not already there.
-     *
+     * <p>
      * This operation is not transactional so it may succeed for some replicas while fail for others.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#alterReplicaLogDirs(Map, AlterReplicaLogDirsOptions)} with default options.
      * See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 1.1.0 or higher.
      *
      * @param replicaAssignment  The replicas with their log directory absolute path
@@ -461,9 +459,9 @@ public abstract class AdminClient implements AutoCloseable {
      * shows REPLICA_NOT_AVAILABLE for the given replica and the replica will be created in the given log directory on the
      * broker when it is created later. If the replica already exists on the broker, the replica will be moved to the given
      * log directory if it is not already there.
-     *
+     * <p>
      * This operation is not transactional so it may succeed for some replicas while fail for others.
-     *
+     * <p>
      * This operation is supported by brokers with version 1.1.0 or higher.
      *
      * @param replicaAssignment  The replicas with their log directory absolute path
@@ -474,10 +472,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Query the information of all log directories on the given set of brokers
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#describeLogDirs(Collection, DescribeLogDirsOptions)} with default options.
      * See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 1.0.0 or higher.
      *
      * @param brokers     A list of brokers
@@ -489,7 +487,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Query the information of all log directories on the given set of brokers
-     *
+     * <p>
      * This operation is supported by brokers with version 1.0.0 or higher.
      *
      * @param brokers     A list of brokers
@@ -500,10 +498,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Query the replica log directory information for the specified replicas.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#describeReplicaLogDirs(Collection, DescribeReplicaLogDirsOptions)}
      * with default options. See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 1.0.0 or higher.
      *
      * @param replicas      The replicas to query
@@ -515,7 +513,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Query the replica log directory information for the specified replicas.
-     *
+     * <p>
      * This operation is supported by brokers with version 1.0.0 or higher.
      *
      * @param replicas      The replicas to query
@@ -525,12 +523,12 @@ public abstract class AdminClient implements AutoCloseable {
     public abstract DescribeReplicaLogDirsResult describeReplicaLogDirs(Collection<TopicPartitionReplica> replicas, DescribeReplicaLogDirsOptions options);
 
     /**
-     * <p>Increase the number of partitions of the topics given as the keys of {@code newPartitions}
+     * Increase the number of partitions of the topics given as the keys of {@code newPartitions}
      * according to the corresponding values. <strong>If partitions are increased for a topic that has a key,
-     * the partition logic or ordering of the messages will be affected.</strong></p>
-     *
-     * <p>This is a convenience method for {@link #createPartitions(Map, CreatePartitionsOptions)} with default options.
-     * See the overload for more details.</p>
+     * the partition logic or ordering of the messages will be affected.</strong>
+     * <p>
+     * This is a convenience method for {@link #createPartitions(Map, CreatePartitionsOptions)} with default options.
+     * See the overload for more details.
      *
      * @param newPartitions The topics which should have new partitions created, and corresponding parameters
      *                      for the created partitions.
@@ -541,21 +539,20 @@ public abstract class AdminClient implements AutoCloseable {
     }
 
     /**
-     * <p>Increase the number of partitions of the topics given as the keys of {@code newPartitions}
+     * Increase the number of partitions of the topics given as the keys of {@code newPartitions}
      * according to the corresponding values. <strong>If partitions are increased for a topic that has a key,
-     * the partition logic or ordering of the messages will be affected.</strong></p>
-     *
-     * <p>This operation is not transactional so it may succeed for some topics while fail for others.</p>
-     *
-     * <p>It may take several seconds after this method returns
-     * success for all the brokers to become aware that the partitions have been created.
-     * During this time, {@link AdminClient#describeTopics(Collection)}
-     * may not return information about the new partitions.</p>
-     *
-     * <p>This operation is supported by brokers with version 1.0.0 or higher.</p>
-     *
-     * <p>The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
-     * {@link CreatePartitionsResult#values() values()} method of the returned {@code CreatePartitionsResult}</p>
+     * the partition logic or ordering of the messages will be affected.</strong>
+     * <p>
+     * This operation is not transactional so it may succeed for some topics while fail for others.
+     * <p>
+     * It may take several seconds after this method returns success for all the brokers to become aware that the
+     * partitions have been created. During this time, {@link AdminClient#describeTopics(Collection)} may not return
+     * information about the new partitions.
+     * <p>
+     * This operation is supported by brokers with version 1.0.0 or higher.
+     * <p>
+     * The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
+     * {@link CreatePartitionsResult#values() values()} method of the returned {@code CreatePartitionsResult}:
      * <ul>
      *     <li>{@link org.apache.kafka.common.errors.AuthorizationException}
      *     if the authenticated user is not authorized to alter the topic</li>
@@ -582,10 +579,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Delete records whose offset is smaller than the given offset of the corresponding partition.
-     *
+     * <p>
      * This is a convenience method for {@link #deleteRecords(Map, DeleteRecordsOptions)} with default options.
      * See the overload for more details.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param recordsToDelete       The topic partitions and related offsets from which records deletion starts.
@@ -597,7 +594,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Delete records whose offset is smaller than the given offset of the corresponding partition.
-     *
+     * <p>
      * This operation is supported by brokers with version 0.11.0.0 or higher.
      *
      * @param recordsToDelete       The topic partitions and related offsets from which records deletion starts.
@@ -608,10 +605,10 @@ public abstract class AdminClient implements AutoCloseable {
                                                       DeleteRecordsOptions options);
 
     /**
-     * <p>Create a Delegation Token.</p>
-     *
-     * <p>This is a convenience method for {@link #createDelegationToken(CreateDelegationTokenOptions)} with default options.
-     * See the overload for more details.</p>
+     * Create a Delegation Token.
+     * <p>
+     * This is a convenience method for {@link #createDelegationToken(CreateDelegationTokenOptions)} with default options.
+     * See the overload for more details.
      *
      * @return                      The CreateDelegationTokenResult.
      */
@@ -621,12 +618,12 @@ public abstract class AdminClient implements AutoCloseable {
 
 
     /**
-     * <p>Create a Delegation Token.</p>
-     *
-     * <p>This operation is supported by brokers with version 1.1.0 or higher.</p>
-     *
-     * <p>The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
-     * {@link CreateDelegationTokenResult#delegationToken() delegationToken()} method of the returned {@code CreateDelegationTokenResult}</p>
+     * Create a Delegation Token.
+     * <p>
+     * This operation is supported by brokers with version 1.1.0 or higher.
+     * <p>
+     * The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
+     * {@link CreateDelegationTokenResult#delegationToken() delegationToken()} method of the returned {@code CreateDelegationTokenResult}:
      * <ul>
      *     <li>{@link org.apache.kafka.common.errors.UnsupportedByAuthenticationException}
      *     If the request sent on PLAINTEXT/1-way SSL channels or delegation token authenticated channels.</li>
@@ -645,11 +642,10 @@ public abstract class AdminClient implements AutoCloseable {
 
 
     /**
-     * <p>Renew a Delegation Token.</p>
-     *
-     * <p>This is a convenience method for {@link #renewDelegationToken(byte[], RenewDelegationTokenOptions)} with default options.
-     * See the overload for more details.</p>
-     *
+     * Renew a Delegation Token.
+     * <p>
+     * This is a convenience method for {@link #renewDelegationToken(byte[], RenewDelegationTokenOptions)} with default options.
+     * See the overload for more details.
      *
      * @param hmac                  HMAC of the Delegation token
      * @return                      The RenewDelegationTokenResult.
@@ -659,12 +655,12 @@ public abstract class AdminClient implements AutoCloseable {
     }
 
     /**
-     * <p> Renew a Delegation Token.</p>
-     *
-     * <p>This operation is supported by brokers with version 1.1.0 or higher.</p>
-     *
-     * <p>The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
-     * {@link RenewDelegationTokenResult#expiryTimestamp() expiryTimestamp()} method of the returned {@code RenewDelegationTokenResult}</p>
+     * Renew a Delegation Token.
+     * <p>
+     * This operation is supported by brokers with version 1.1.0 or higher.
+     * <p>
+     * The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
+     * {@link RenewDelegationTokenResult#expiryTimestamp() expiryTimestamp()} method of the returned {@code RenewDelegationTokenResult}:
      * <ul>
      *     <li>{@link org.apache.kafka.common.errors.UnsupportedByAuthenticationException}
      *     If the request sent on PLAINTEXT/1-way SSL channels or delegation token authenticated channels.</li>
@@ -687,10 +683,10 @@ public abstract class AdminClient implements AutoCloseable {
     public abstract RenewDelegationTokenResult renewDelegationToken(byte[] hmac, RenewDelegationTokenOptions options);
 
     /**
-     * <p>Expire a Delegation Token.</p>
-     *
-     * <p>This is a convenience method for {@link #expireDelegationToken(byte[], ExpireDelegationTokenOptions)} with default options.
-     * This will expire the token immediately. See the overload for more details.</p>
+     * Expire a Delegation Token.
+     * <p>
+     * This is a convenience method for {@link #expireDelegationToken(byte[], ExpireDelegationTokenOptions)} with default options.
+     * This will expire the token immediately. See the overload for more details.
      *
      * @param hmac                  HMAC of the Delegation token
      * @return                      The ExpireDelegationTokenResult.
@@ -700,12 +696,12 @@ public abstract class AdminClient implements AutoCloseable {
     }
 
     /**
-     * <p>Expire a Delegation Token.</p>
-     *
-     * <p>This operation is supported by brokers with version 1.1.0 or higher.</p>
-     *
-     * <p>The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
-     * {@link ExpireDelegationTokenResult#expiryTimestamp() expiryTimestamp()} method of the returned {@code ExpireDelegationTokenResult}</p>
+     * Expire a Delegation Token.
+     * <p>
+     * This operation is supported by brokers with version 1.1.0 or higher.
+     * <p>
+     * The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
+     * {@link ExpireDelegationTokenResult#expiryTimestamp() expiryTimestamp()} method of the returned {@code ExpireDelegationTokenResult}:
      * <ul>
      *     <li>{@link org.apache.kafka.common.errors.UnsupportedByAuthenticationException}
      *     If the request sent on PLAINTEXT/1-way SSL channels or delegation token authenticated channels.</li>
@@ -728,10 +724,10 @@ public abstract class AdminClient implements AutoCloseable {
     public abstract ExpireDelegationTokenResult expireDelegationToken(byte[] hmac, ExpireDelegationTokenOptions options);
 
     /**
-     *<p>Describe the Delegation Tokens.</p>
-     *
-     * <p>This is a convenience method for {@link #describeDelegationToken(DescribeDelegationTokenOptions)} with default options.
-     * This will return all the user owned tokens and tokens where user have Describe permission. See the overload for more details.</p>
+     * Describe the Delegation Tokens.
+     * <p>
+     * This is a convenience method for {@link #describeDelegationToken(DescribeDelegationTokenOptions)} with default options.
+     * This will return all the user owned tokens and tokens where user have Describe permission. See the overload for more details.
      *
      * @return                      The DescribeDelegationTokenResult.
      */
@@ -740,12 +736,12 @@ public abstract class AdminClient implements AutoCloseable {
     }
 
     /**
-     * <p>Describe the Delegation Tokens.</p>
-     *
-     * <p>This operation is supported by brokers with version 1.1.0 or higher.</p>
-     *
-     * <p>The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
-     * {@link DescribeDelegationTokenResult#delegationTokens() delegationTokens()} method of the returned {@code DescribeDelegationTokenResult}</p>
+     * Describe the Delegation Tokens.
+     * <p>
+     * This operation is supported by brokers with version 1.1.0 or higher.
+     * <p>
+     * The following exceptions can be anticipated when calling {@code get()} on the futures obtained from the
+     * {@link DescribeDelegationTokenResult#delegationTokens() delegationTokens()} method of the returned {@code DescribeDelegationTokenResult}:
      * <ul>
      *     <li>{@link org.apache.kafka.common.errors.UnsupportedByAuthenticationException}
      *     If the request sent on PLAINTEXT/1-way SSL channels or delegation token authenticated channels.</li>
@@ -794,7 +790,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * List the consumer groups available in the cluster with the default options.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#listConsumerGroups(ListConsumerGroupsOptions)} with default options.
      * See the overload for more details.
      *
@@ -814,7 +810,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * List the consumer group offsets available in the cluster with the default options.
-     *
+     * <p>
      * This is a convenience method for #{@link AdminClient#listConsumerGroupOffsets(String, ListConsumerGroupOffsetsOptions)} with default options.
      *
      * @return The ListGroupOffsetsResult.
@@ -842,10 +838,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Elect the preferred replica as leader for topic partitions.
-     *
+     * <p>
      * This is a convenience method for {@link #electLeaders(ElectionType, Set, ElectLeadersOptions)}
      * with preferred election type and default options.
-     *
+     * <p>
      * This operation is supported by brokers with version 2.2.0 or higher.
      *
      * @param partitions      The partitions for which the preferred leader should be elected.
@@ -859,10 +855,10 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Elect the preferred replica as leader for topic partitions.
-     *
+     * <p>
      * This is a convenience method for {@link #electLeaders(ElectionType, Set, ElectLeadersOptions)}
      * with preferred election type.
-     *
+     * <p>
      * This operation is supported by brokers with version 2.2.0 or higher.
      *
      * @param partitions      The partitions for which the preferred leader should be elected.
@@ -882,7 +878,7 @@ public abstract class AdminClient implements AutoCloseable {
 
     /**
      * Elect a replica as leader for topic partitions.
-     *
+     * <p>
      * This is a convenience method for {@link #electLeaders(ElectionType, Set, ElectLeadersOptions)}
      * with default options.
      *
@@ -897,19 +893,19 @@ public abstract class AdminClient implements AutoCloseable {
     /**
      * Elect a replica as leader for the given {@code partitions}, or for all partitions if the argumentl
      * to {@code partitions} is null.
-     *
+     * <p>
      * This operation is not transactional so it may succeed for some partitions while fail for others.
-     *
+     * <p>
      * It may take several seconds after this method returns success for all the brokers in the cluster
      * to become aware that the partitions have new leaders. During this time,
      * {@link AdminClient#describeTopics(Collection)} may not return information about the partitions'
      * new leaders.
-     *
+     * <p>
      * This operation is supported by brokers with version 2.2.0 or later if preferred eleciton is use;
      * otherwise the brokers most be 2.4.0 or higher.
-     *
-     * <p>The following exceptions can be anticipated when calling {@code get()} on the future obtained
-     * from the returned {@code ElectLeadersResult}:</p>
+     * <p>
+     * The following exceptions can be anticipated when calling {@code get()} on the future obtained
+     * from the returned {@code ElectLeadersResult}:
      * <ul>
      *   <li>{@link org.apache.kafka.common.errors.ClusterAuthorizationException}
      *   if the authenticated user didn't have alter access to the cluster.</li>

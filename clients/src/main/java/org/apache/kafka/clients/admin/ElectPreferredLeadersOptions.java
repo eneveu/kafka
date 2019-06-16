@@ -22,7 +22,7 @@ import java.util.Collection;
 
 /**
  * Options for {@link AdminClient#electPreferredLeaders(Collection, ElectPreferredLeadersOptions)}.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  *
  * @deprecated Since 2.4.0. Use {@link AdminClient#electLeaders(ElectionType, Set, ElectLeadersOptions)}.

@@ -87,7 +87,7 @@ public interface MemoryPool {
      * Returns true if the pool cannot currently allocate any more buffers
      * - meaning total outstanding buffers meets or exceeds pool size and
      * some would need to be released before further allocations are possible.
-     *
+     * <p>
      * This is equivalent to availableMemory() <= 0
      * @return true if out of memory
      */

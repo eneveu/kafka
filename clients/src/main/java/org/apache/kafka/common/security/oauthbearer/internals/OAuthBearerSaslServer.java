@@ -80,7 +80,6 @@ public class OAuthBearerSaslServer implements SaslServer {
      *             leaked to unauthenticated clients. It may be safer to throw
      *             {@link SaslException} in some cases so that a standard error
      *             message is returned to clients.
-     *             </p>
      */
     @Override
     public byte[] evaluateResponse(byte[] response) throws SaslException, SaslAuthenticationException {

@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * Describes new partitions for a particular topic in a call to {@link AdminClient#createPartitions(Map)}.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving
@@ -50,25 +50,25 @@ public class NewPartitions {
     }
 
     /**
-     * <p>Increase the partition count for a topic to the given {@code totalCount}
+     * Increase the partition count for a topic to the given {@code totalCount}
      * assigning the new partitions according to the given {@code newAssignments}.
      * The length of the given {@code newAssignments} should equal {@code totalCount - oldCount}, since
      * the assignment of existing partitions are not changed.
      * Each inner list of {@code newAssignments} should have a length equal to
      * the topic's replication factor.
-     * The first broker id in each inner list is the "preferred replica".</p>
-     *
-     * <p>For example, suppose a topic currently has a replication factor of 2, and
+     * The first broker id in each inner list is the "preferred replica".
+     * <p>
+     * For example, suppose a topic currently has a replication factor of 2, and
      * has 3 partitions. The number of partitions can be increased to 6 using a
-     * {@code NewPartition} constructed like this:</p>
-     *
+     * {@code NewPartition} constructed like this:
      * <pre><code>
      * NewPartitions.increaseTo(6, asList(asList(1, 2),
      *                                    asList(2, 3),
      *                                    asList(3, 1)))
      * </code></pre>
-     * <p>In this example partition 3's preferred leader will be broker 1, partition 4's preferred leader will be
-     * broker 2 and partition 5's preferred leader will be broker 3.</p>
+     * <p>
+     * In this example partition 3's preferred leader will be broker 1, partition 4's preferred leader will be
+     * broker 2 and partition 5's preferred leader will be broker 3.
      *
      * @param totalCount The total number of partitions after the operation succeeds.
      * @param newAssignments The replica assignments for the new partitions.

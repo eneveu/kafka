@@ -43,15 +43,12 @@ import static org.apache.kafka.common.config.ConfigDef.Range.atLeast;
 import static org.apache.kafka.common.config.ConfigDef.ValidString.in;
 
 /**
- * <p>
  * Configuration options for Connectors. These only include Kafka Connect system-level configuration
  * options (e.g. Connector class name, timeouts used by Connect to control the connector) but does
  * not include Connector-specific options (e.g. database connection settings).
- * </p>
  * <p>
  * Note that some of these options are not required for all connectors. For example TOPICS_CONFIG
  * is sink-specific.
- * </p>
  */
 public class ConnectorConfig extends AbstractConfig {
     protected static final String COMMON_GROUP = "Common";

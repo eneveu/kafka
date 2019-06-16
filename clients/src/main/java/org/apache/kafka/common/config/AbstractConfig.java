@@ -61,35 +61,34 @@ public class AbstractConfig {
      * Construct a configuration with a ConfigDef and the configuration properties, which can include properties
      * for zero or more {@link ConfigProvider} that will be used to resolve variables in configuration property
      * values.
-     *
+     * <p>
      * The originals is a name-value pair configuration properties and optional config provider configs. The
      * value of the configuration can be a variable as defined below or the actual value. This constructor will
      * first instantiate the ConfigProviders using the config provider configs, then it will find all the
      * variables in the values of the originals configurations, attempt to resolve the variables using the named
      * ConfigProviders, and then parse and validate the configurations.
-     *
+     * <p>
      * ConfigProvider configs can be passed either as configs in the originals map or in the separate
      * configProviderProps map. If config providers properties are passed in the configProviderProps any config
      * provider properties in originals map will be ignored. If ConfigProvider properties are not provided, the
      * constructor will skip the variable substitution step and will simply validate and parse the supplied
      * configuration.
-     *
+     * <p>
      * The "{@code config.providers}" configuration property and all configuration properties that begin with the
      * "{@code config.providers.}" prefix are reserved. The "{@code config.providers}" configuration property
      * specifies the names of the config providers, and properties that begin with the "{@code config.providers..}"
      * prefix correspond to the properties for that named provider. For example, the "{@code config.providers..class}"
      * property specifies the name of the {@link ConfigProvider} implementation class that should be used for
      * the provider.
-     *
+     * <p>
      * The keys for ConfigProvider configs in both originals and configProviderProps will start with the above
      * mentioned "{@code config.providers.}" prefix.
-     *
+     * <p>
      * Variables have the form "${providerName:[path:]key}", where "providerName" is the name of a ConfigProvider,
      * "path" is an optional string, and "key" is a required string. This variable is resolved by passing the "key"
      * and optional "path" to a ConfigProvider with the specified name, and the result from the ConfigProvider is
      * then used in place of the variable. Variables that cannot be resolved by the AbstractConfig constructor will
      * be left unchanged in the configuration.
-     *
      *
      * @param definition the definition of the configurations; may not be null
      * @param originals the configuration properties plus any optional config provider properties;
@@ -270,7 +269,7 @@ public class AbstractConfig {
     /**
      * Put all keys that do not start with {@code prefix} and their parsed values in the result map and then
      * put all the remaining keys with the prefix stripped and their parsed values in the result map.
-     *
+     * <p>
      * This is useful if one wants to allow prefixed configs to override default ones.
      * <p>
      * Two forms of prefixes are supported:
@@ -281,7 +280,6 @@ public class AbstractConfig {
      *         the key `{mechanism}.some.prop` with the value parsed using the definition of `some.prop` is returned.
      *          This is used to provide per-mechanism configs for a broker listener (e.g sasl.jaas.config)</li>
      * </ul>
-     * </p>
      */
     public Map<String, Object> valuesWithPrefixOverride(String prefix) {
         Map<String, Object> result = new RecordingMap<>(values(), prefix, true);
@@ -305,7 +303,7 @@ public class AbstractConfig {
     /**
      * If at least one key with {@code prefix} exists, all prefixed values will be parsed and put into map.
      * If no value with {@code prefix} exists all unprefixed values will be returned.
-     *
+     * <p>
      * This is useful if one wants to allow prefixed configs to override default ones, but wants to use either
      * only prefixed configs or only regular configs, but not mix them.
      */

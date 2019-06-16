@@ -79,7 +79,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * AbstractCoordinator implements group management for a single group member by interacting with
  * a designated Kafka broker (the coordinator). Group semantics are provided by extending this class.
  * See {@link ConsumerCoordinator} for example usage.
- *
+ * <p>
  * From a high level, Kafka's group management protocol consists of the following sequence of actions:
  *
  * <ol>
@@ -97,7 +97,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * member for group registration in {@link #metadata()} and the format of the state assignment provided
  * by the leader in {@link #performAssignment(String, String, List)} and becomes available to members in
  * {@link #onJoinComplete(int, String, String, ByteBuffer)}.
- *
+ * <p>
  * Note on locking: this class shares state between the caller and a background thread which is
  * used for sending heartbeats after the client has joined the group. All mutable state as well as
  * state transitions are protected with the class's monitor. Generally this means acquiring the lock
@@ -202,7 +202,7 @@ public abstract class AbstractCoordinator implements Closeable {
 
     /**
      * Visible for testing.
-     *
+     * <p>
      * Ensure that the coordinator is ready to receive requests.
      *
      * @param timer Timer bounding how long this method can block
@@ -357,7 +357,7 @@ public abstract class AbstractCoordinator implements Closeable {
 
     /**
      * Joins the group without starting the heartbeat thread.
-     *
+     * <p>
      * Visible for testing.
      *
      * @param timer Timer bounding how long this method can block
@@ -460,7 +460,7 @@ public abstract class AbstractCoordinator implements Closeable {
      * Join the group and return the assignment for the next generation. This function handles both
      * JoinGroup and SyncGroup, delegating to {@link #performAssignment(String, String, List)} if
      * elected leader by the coordinator.
-     *
+     * <p>
      * NOTE: This is visible only for testing
      *
      * @return A request future which wraps the assignment returned from the group leader

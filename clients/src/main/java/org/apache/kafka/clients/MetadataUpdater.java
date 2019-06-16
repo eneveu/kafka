@@ -45,10 +45,10 @@ public interface MetadataUpdater extends Closeable {
     /**
      * Starts a cluster metadata update if needed and possible. Returns the time until the metadata update (which would
      * be 0 if an update has been started as a result of this call).
-     *
+     * <p>
      * If the implementation relies on `NetworkClient` to send requests, `handleCompletedMetadataResponse` will be
      * invoked after the metadata response is received.
-     *
+     * <p>
      * The semantics of `needed` and `possible` are implementation-dependent and may take into account a number of
      * factors like node availability, how long since the last metadata update, etc.
      */
@@ -56,7 +56,7 @@ public interface MetadataUpdater extends Closeable {
 
     /**
      * Handle disconnections for metadata requests.
-     *
+     * <p>
      * This provides a mechanism for the `MetadataUpdater` implementation to use the NetworkClient instance for its own
      * requests with special handling for disconnections of such requests.
      * @param destination
@@ -72,7 +72,7 @@ public interface MetadataUpdater extends Closeable {
 
     /**
      * Handle responses for metadata requests.
-     *
+     * <p>
      * This provides a mechanism for the `MetadataUpdater` implementation to use the NetworkClient instance for its own
      * requests with special handling for completed receives of such requests.
      */

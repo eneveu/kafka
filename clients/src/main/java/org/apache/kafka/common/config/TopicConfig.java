@@ -18,10 +18,10 @@
 package org.apache.kafka.common.config;
 
 /**
- * <p>Keys that can be used to configure a topic. These keys are useful when creating or reconfiguring a
+ * Keys that can be used to configure a topic. These keys are useful when creating or reconfiguring a
  * topic using the AdminClient.
- *
- * <p>The intended pattern is for broker configs to include a <code>`log.`</code> prefix. For example, to set the default broker
+ * <p>
+ * The intended pattern is for broker configs to include a <code>`log.`</code> prefix. For example, to set the default broker
  * cleanup policy, one would set <code>log.cleanup.policy</code> instead of <code>cleanup.policy</code>. Unfortunately, there are many cases
  * where this pattern is not followed.
  */

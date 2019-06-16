@@ -29,7 +29,6 @@ import javax.security.sasl.SaslException;
 /**
  * SCRAM request/response message creation and parsing based on
  * <a href="https://tools.ietf.org/html/rfc5802">RFC 5802</a>
- *
  */
 public class ScramMessages {
 
@@ -62,7 +61,6 @@ public class ScramMessages {
      * Limitations:
      *     Only gs2-header "n" is supported.
      *     Extensions are ignored.
-     *
      */
     public static class ClientFirstMessage extends AbstractScramMessage {
         private static final Pattern PATTERN = Pattern.compile(String.format(

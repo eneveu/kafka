@@ -29,12 +29,9 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * <p>
- *     SchemaProjector is utility to project a value between compatible schemas and throw exceptions
- *     when non compatible schemas are provided.
- * </p>
+ * SchemaProjector is utility to project a value between compatible schemas and throw exceptions
+ * when non compatible schemas are provided.
  */
-
 public class SchemaProjector {
 
     private static Set<AbstractMap.SimpleImmutableEntry<Type, Type>> promotable = new HashSet<>();

@@ -101,7 +101,8 @@ public class Printed<K, V> implements NamedOperation<Printed<K, V>> {
     }
 
     /**
-     * Print the records of a {@link KStream} with the provided {@link KeyValueMapper}
+     * Print the records of a {@link KStream} with the provided {@link KeyValueMapper}.
+     * <p>
      * The provided KeyValueMapper's mapped value type must be {@code String}.
      * <p>
      * The example below shows how to customize output data.
@@ -112,7 +113,7 @@ public class Printed<K, V> implements NamedOperation<Printed<K, V>> {
      *     }
      * };
      * }</pre>
-     *
+     * <p>
      * Implementors will need to override {@code toString()} for keys and values that are not of type {@link String},
      * {@link Integer} etc. to get meaningful information.
      *

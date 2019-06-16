@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  * An interface for converting bytes to objects.
- *
+ * <p>
  * A class that implements this interface is expected to have a constructor with no parameters.
  * <p>
  * Implement {@link org.apache.kafka.common.ClusterResourceListener} to receive cluster metadata once it's available. Please see the class documentation for ClusterResourceListener for more information.

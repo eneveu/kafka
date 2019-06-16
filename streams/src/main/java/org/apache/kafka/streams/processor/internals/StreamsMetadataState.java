@@ -116,7 +116,7 @@ public class StreamsMetadataState {
      * Find the {@link StreamsMetadata}s for a given storeName and key. This method will use the
      * {@link DefaultStreamPartitioner} to locate the store. If a custom partitioner has been used
      * please use {@link StreamsMetadataState#getMetadataWithKey(String, Object, StreamPartitioner)}
-     *
+     * <p>
      * Note: the key may not exist in the {@link org.apache.kafka.streams.processor.StateStore},
      * this method provides a way of finding which {@link StreamsMetadata} it would exist on.
      *
@@ -164,7 +164,7 @@ public class StreamsMetadataState {
 
     /**
      * Find the {@link StreamsMetadata}s for a given storeName and key.
-     *
+     * <p>
      * Note: the key may not exist in the {@link StateStore},
      * this method provides a way of finding which {@link StreamsMetadata} it would exist on.
      *

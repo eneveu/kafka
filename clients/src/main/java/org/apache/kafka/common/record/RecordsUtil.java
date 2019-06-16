@@ -28,11 +28,11 @@ public class RecordsUtil {
      * Down convert batches to the provided message format version. The first offset parameter is only relevant in the
      * conversion from uncompressed v2 or higher to v1 or lower. The reason is that uncompressed records in v0 and v1
      * are not batched (put another way, each batch always has 1 record).
-     *
+     * <p>
      * If a client requests records in v1 format starting from the middle of an uncompressed batch in v2 format, we
      * need to drop records from the batch during the conversion. Some versions of librdkafka rely on this for
      * correctness.
-     *
+     * <p>
      * The temporaryMemoryBytes computation assumes that the batches are not loaded into the heap
      * (via classes like FileChannelRecordBatch) before this method is called. This is the case in the broker (we
      * only load records into the heap when down converting), but it's not for the producer. However, down converting

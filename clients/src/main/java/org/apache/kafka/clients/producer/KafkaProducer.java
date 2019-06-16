@@ -87,7 +87,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * A Kafka client that publishes records to the Kafka cluster.
- * <P>
+ * <p>
  * The producer is <i>thread safe</i> and sharing a single producer instance across threads will generally be faster than
  * having multiple instances.
  * <p>
@@ -149,13 +149,11 @@ import java.util.concurrent.atomic.AtomicReference;
  * The idempotent producer strengthens Kafka's delivery semantics from at least once to exactly once delivery. In particular
  * producer retries will no longer introduce duplicates. The transactional producer allows an application to send messages
  * to multiple partitions (and topics!) atomically.
- * </p>
  * <p>
  * To enable idempotence, the <code>enable.idempotence</code> configuration must be set to true. If set, the
  * <code>retries</code> config will default to <code>Integer.MAX_VALUE</code> and the <code>acks</code> config will
  * default to <code>all</code>. There are no API changes for the idempotent producer, so existing applications will
  * not need to be modified to take advantage of this feature.
- * </p>
  * <p>
  * To take advantage of the idempotent producer, it is imperative to avoid application level re-sends since these cannot
  * be de-duplicated. As such, if an application enables idempotence, it is recommended to leave the <code>retries</code>
@@ -163,23 +161,21 @@ import java.util.concurrent.atomic.AtomicReference;
  * returns an error even with infinite retries (for instance if the message expires in the buffer before being sent),
  * then it is recommended to shut down the producer and check the contents of the last produced message to ensure that
  * it is not duplicated. Finally, the producer can only guarantee idempotence for messages sent within a single session.
- * </p>
- * <p>To use the transactional producer and the attendant APIs, you must set the <code>transactional.id</code>
+ * <p>
+ * To use the transactional producer and the attendant APIs, you must set the <code>transactional.id</code>
  * configuration property. If the <code>transactional.id</code> is set, idempotence is automatically enabled along with
  * the producer configs which idempotence depends on. Further, topics which are included in transactions should be configured
  * for durability. In particular, the <code>replication.factor</code> should be at least <code>3</code>, and the
  * <code>min.insync.replicas</code> for these topics should be set to 2. Finally, in order for transactional guarantees
  * to be realized from end-to-end, the consumers must be configured to read only committed messages as well.
- * </p>
  * <p>
  * The purpose of the <code>transactional.id</code> is to enable transaction recovery across multiple sessions of a
  * single producer instance. It would typically be derived from the shard identifier in a partitioned, stateful, application.
  * As such, it should be unique to each producer instance running within a partitioned application.
- * </p>
- * <p>All the new transactional APIs are blocking and will throw exceptions on failure. The example
+ * <p>
+ * All the new transactional APIs are blocking and will throw exceptions on failure. The example
  * below illustrates how the new APIs are meant to be used. It is similar to the example above, except that all
  * 100 messages are part of a single transaction.
- * </p>
  * <p>
  * <pre>
  * {@code
@@ -204,28 +200,23 @@ import java.util.concurrent.atomic.AtomicReference;
  * }
  * producer.close();
  * } </pre>
- * </p>
  * <p>
  * As is hinted at in the example, there can be only one open transaction per producer. All messages sent between the
  * {@link #beginTransaction()} and {@link #commitTransaction()} calls will be part of a single transaction. When the
  * <code>transactional.id</code> is specified, all messages sent by the producer must be part of a transaction.
- * </p>
  * <p>
  * The transactional producer uses exceptions to communicate error states. In particular, it is not required
  * to specify callbacks for <code>producer.send()</code> or to call <code>.get()</code> on the returned Future: a
  * <code>KafkaException</code> would be thrown if any of the
  * <code>producer.send()</code> or transactional calls hit an irrecoverable error during a transaction. See the {@link #send(ProducerRecord)}
  * documentation for more details about detecting errors from a transactional send.
- * </p>
- * </p>By calling
- * <code>producer.abortTransaction()</code> upon receiving a <code>KafkaException</code> we can ensure that any
- * successful writes are marked as aborted, hence keeping the transactional guarantees.
- * </p>
+ * <p>
+ * By calling <code>producer.abortTransaction()</code> upon receiving a <code>KafkaException</code> we can ensure that
+ * any successful writes are marked as aborted, hence keeping the transactional guarantees.
  * <p>
  * This client can communicate with brokers that are version 0.10.0 or newer. Older or newer brokers may not support
  * certain client features.  For instance, the transactional APIs need broker versions 0.11.0 or later. You will receive an
  * <code>UnsupportedVersionException</code> when invoking an API that is not available in the running broker version.
- * </p>
  */
 public class KafkaProducer<K, V> implements Producer<K, V> {
 
@@ -264,7 +255,6 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
      * <p>
      * Note: after creating a {@code KafkaProducer} you must always {@link #close()} it to avoid resource leaks.
      * @param configs   The producer configs
-     *
      */
     public KafkaProducer(final Map<String, Object> configs) {
         this(configs, null, null, null, null, null, Time.SYSTEM);
@@ -592,7 +582,7 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
 
     /**
      * Needs to be called before any other methods when the transactional.id is set in the configuration.
-     *
+     * <p>
      * This method does the following:
      *   1. Ensures any transactions initiated by previous instances of the producer with the same
      *      transactional.id are completed. If the previous instance had failed with a transaction in
@@ -600,7 +590,7 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
      *      but not yet finished, this method awaits its completion.
      *   2. Gets the internal producer id and epoch, used in all future transactional
      *      messages issued by the producer.
-     *
+     * <p>
      * Note that this method will raise {@link TimeoutException} if the transactional state cannot
      * be initialized before expiration of {@code max.block.ms}. Additionally, it will raise {@link InterruptException}
      * if interrupted. It is safe to retry in either case, but once the transactional state has been successfully
@@ -677,11 +667,11 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
 
     /**
      * Commits the ongoing transaction. This method will flush any unsent records before actually committing the transaction.
-     *
+     * <p>
      * Further, if any of the {@link #send(ProducerRecord)} calls which were part of the transaction hit irrecoverable
      * errors, this method will throw the last received exception immediately and the transaction will not be committed.
      * So all {@link #send(ProducerRecord)} calls in a transaction must succeed in order for this method to succeed.
-     *
+     * <p>
      * Note that this method will raise {@link TimeoutException} if the transaction cannot be committed before expiration
      * of {@code max.block.ms}. Additionally, it will raise {@link InterruptException} if interrupted.
      * It is safe to retry in either case, but it is not possible to attempt a different operation (such as abortTransaction)
@@ -710,7 +700,7 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
      * Aborts the ongoing transaction. Any unflushed produce messages will be aborted when this call is made.
      * This call will throw an exception immediately if any prior {@link #send(ProducerRecord)} calls failed with a
      * {@link ProducerFencedException} or an instance of {@link org.apache.kafka.common.errors.AuthorizationException}.
-     *
+     * <p>
      * Note that this method will raise {@link TimeoutException} if the transaction cannot be aborted before expiration
      * of {@code max.block.ms}. Additionally, it will raise {@link InterruptException} if interrupted.
      * It is safe to retry in either case, but it is not possible to attempt a different operation (such as commitTransaction)
@@ -806,7 +796,6 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
      * the final {@link #commitTransaction()} call will fail and throw the exception from the last failed send. When
      * this happens, your application should call {@link #abortTransaction()} to reset the state and continue to send
      * data.
-     * </p>
      * <p>
      * Some transactional send errors cannot be resolved with a call to {@link #abortTransaction()}.  In particular,
      * if a transactional send finishes with a {@link ProducerFencedException}, a {@link org.apache.kafka.common.errors.OutOfOrderSequenceException},
@@ -814,7 +803,6 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
      * {@link org.apache.kafka.common.errors.AuthorizationException}, then the only option left is to call {@link #close()}.
      * Fatal errors cause the producer to enter a defunct state in which future API calls will continue to raise
      * the same underyling error wrapped in a new {@link KafkaException}.
-     * </p>
      * <p>
      * It is a similar picture when idempotence is enabled, but no <code>transactional.id</code> has been configured.
      * In this case, {@link org.apache.kafka.common.errors.UnsupportedVersionException} and
@@ -823,13 +811,11 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
      * sending after receiving an {@link org.apache.kafka.common.errors.OutOfOrderSequenceException}, but doing so
      * can result in out of order delivery of pending messages. To ensure proper ordering, you should close the
      * producer and create a new instance.
-     * </p>
      * <p>
      * If the message format of the destination topic is not upgraded to 0.11.0.0, idempotent and transactional
      * produce requests will fail with an {@link org.apache.kafka.common.errors.UnsupportedForMessageFormatException}
      * error. If this is encountered during a transaction, it is possible to abort and continue. But note that future
      * sends to the same topic will continue receiving the same exception until the topic is upgraded.
-     * </p>
      * <p>
      * Note that callbacks will generally execute in the I/O thread of the producer and so should be reasonably fast or
      * they will delay the sending of messages from other threads. If you want to execute blocking or computationally
@@ -1061,12 +1047,10 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
      *
      * Note that the above example may drop records if the produce request fails. If we want to ensure that this does not occur
      * we need to set <code>retries=&lt;large_number&gt;</code> in our config.
-     * </p>
      * <p>
      * Applications don't need to call this method for transactional producers, since the {@link #commitTransaction()} will
      * flush all buffered records before performing the commit. This ensures that all the {@link #send(ProducerRecord)}
      * calls made since the previous {@link #beginTransaction()} are completed before the commit.
-     * </p>
      *
      * @throws InterruptException If the thread is interrupted while blocked
      */
@@ -1115,7 +1099,6 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
      * <strong>If close() is called from {@link Callback}, a warning message will be logged and close(0, TimeUnit.MILLISECONDS)
      * will be called instead. We do this because the sender thread would otherwise try to join itself and
      * block forever.</strong>
-     * <p>
      *
      * @throws InterruptException If the thread is interrupted while blocked
      */
@@ -1139,7 +1122,6 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
      *                non-negative. Specifying a timeout of zero means do not wait for pending send requests to complete.
      * @throws InterruptException If the thread is interrupted while blocked
      * @throws IllegalArgumentException If the <code>timeout</code> is negative.
-     *
      */
     @Override
     public void close(Duration timeout) {

@@ -141,7 +141,7 @@ public abstract class AbstractRecords implements Records {
 
     /**
      * Return the size of the record batch header.
-     *
+     * <p>
      * For V0 and V1 with no compression, it's unclear if Records.LOG_OVERHEAD or 0 should be chosen. There is no header
      * per batch, but a sequence of batches is preceded by the offset and size. This method returns `0` as it's what
      * `MemoryRecordsBuilder` requires.

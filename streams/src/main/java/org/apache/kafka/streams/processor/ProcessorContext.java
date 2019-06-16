@@ -243,10 +243,10 @@ public interface ProcessorContext {
 
     /**
      * Returns the current timestamp.
-     *
+     * <p>
      * If it is triggered while processing a record streamed from the source processor, timestamp is defined as the timestamp of the current input record; the timestamp is extracted from
      * {@link org.apache.kafka.clients.consumer.ConsumerRecord ConsumerRecord} by {@link TimestampExtractor}.
-     *
+     * <p>
      * If it is triggered while processing a record generated not from the source processor (for example,
      * if this method is invoked from the punctuate call), timestamp is defined as the current
      * task's stream time, which is defined as the smallest among all its input stream partition timestamps.
@@ -257,7 +257,7 @@ public interface ProcessorContext {
 
     /**
      * Returns all the application config properties as key/value pairs.
-     *
+     * <p>
      * The config properties are defined in the {@link org.apache.kafka.streams.StreamsConfig}
      * object and associated to the ProcessorContext.
      * <p>
@@ -273,13 +273,12 @@ public interface ProcessorContext {
     /**
      * Returns all the application config properties with the given key prefix, as key/value pairs
      * stripping the prefix.
-     *
+     * <p>
      * The config properties are defined in the {@link org.apache.kafka.streams.StreamsConfig}
      * object and associated to the ProcessorContext.
      *
      * @param prefix the properties prefix
      * @return the key/values matching the given prefix from the StreamsConfig properties.
-     *
      */
     Map<String, Object> appConfigsWithPrefix(final String prefix);
 

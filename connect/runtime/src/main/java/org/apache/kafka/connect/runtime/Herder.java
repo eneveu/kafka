@@ -30,25 +30,21 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * <p>
  * The herder interface tracks and manages workers and connectors. It is the main interface for external components
  * to make changes to the state of the cluster. For example, in distributed mode, an implementation of this class
  * knows how to accept a connector configuration, may need to route it to the current leader worker for the cluster so
  * the config can be written to persistent storage, and then ensures the new connector is correctly instantiated on one
  * of the workers.
- * </p>
  * <p>
  * This class must implement all the actions that can be taken on the cluster (add/remove connectors, pause/resume tasks,
  * get state of connectors and tasks, etc). The non-Java interfaces to the cluster (REST API and CLI) are very simple
  * wrappers of the functionality provided by this interface.
- * </p>
  * <p>
  * In standalone mode, this implementation of this class will be trivial because no coordination is needed. In that case,
  * the implementation will mainly be delegating tasks directly to other components. For example, when creating a new
  * connector in standalone mode, there is no need to persist the config and the connector and its tasks must run in the
  * same process, so the standalone herder implementation can immediately instantiate and start the connector and its
  * tasks.
- * </p>
  */
 public interface Herder {
 

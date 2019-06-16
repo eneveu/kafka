@@ -24,11 +24,11 @@ import java.util.zip.Checksum;
 
 /**
  * This class was taken from Hadoop: org.apache.hadoop.util.PureJavaCrc32C.
- *
+ * <p>
  * A pure-java implementation of the CRC32 checksum that uses
  * the CRC32-C polynomial, the same polynomial used by iSCSI
  * and implemented on many Intel chipsets supporting SSE4.2.
- *
+ * <p>
  * NOTE: This class is intended for INTERNAL usage only within Kafka.
  */
 // The exact version that was retrieved from Hadoop:

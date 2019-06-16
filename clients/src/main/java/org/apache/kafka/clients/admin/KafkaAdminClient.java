@@ -176,7 +176,7 @@ import static org.apache.kafka.common.utils.Utils.closeQuietly;
 /**
  * The default implementation of {@link AdminClient}. An instance of this class is created by invoking one of the
  * {@code create()} methods in {@code AdminClient}. Users should not refer to this class directly.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving
@@ -601,7 +601,7 @@ public class KafkaAdminClient extends AdminClient {
 
         /**
          * Handle a failure.
-         *
+         * <p>
          * Depending on what the exception is and how many times we have already tried, we may choose to
          * fail the Call, or retry it. It is important to print the stack traces here in some cases,
          * since they are not necessarily preserved in ApiVersionException objects.
@@ -672,7 +672,6 @@ public class KafkaAdminClient extends AdminClient {
          * Create an AbstractRequest.Builder for this Call.
          *
          * @param timeoutMs The timeout in milliseconds.
-         *
          * @return          The AbstractRequest builder.
          */
         abstract AbstractRequest.Builder createRequest(int timeoutMs);
@@ -681,7 +680,6 @@ public class KafkaAdminClient extends AdminClient {
          * Process the call response.
          *
          * @param abstractResponse  The AbstractResponse.
-         *
          */
         abstract void handleResponse(AbstractResponse abstractResponse);
 
@@ -697,7 +695,6 @@ public class KafkaAdminClient extends AdminClient {
          * Handle an UnsupportedVersionException.
          *
          * @param exception     The exception.
-         *
          * @return              True if the exception can be handled; false otherwise.
          */
         boolean handleUnsupportedVersionException(UnsupportedVersionException exception) {
@@ -747,7 +744,6 @@ public class KafkaAdminClient extends AdminClient {
          * The remaining milliseconds until the next timeout will be updated.
          *
          * @param calls         The collection of calls.
-         *
          * @return              The number of calls which were timed out.
          */
         int handleTimeouts(Collection<Call> calls, String msg) {
@@ -771,7 +767,6 @@ public class KafkaAdminClient extends AdminClient {
          * The remaining milliseconds until the next timeout will be updated.
          *
          * @param call      The call.
-         *
          * @return          True if the call should be timed out.
          */
         boolean callHasExpired(Call call) {
@@ -847,7 +842,7 @@ public class KafkaAdminClient extends AdminClient {
 
         /**
          * Drain all the calls from newCalls into pendingCalls.
-         *
+         * <p>
          * This function holds the lock for the minimum amount of time, to avoid blocking
          * users of AdminClient who will also take the lock to add new calls.
          */
@@ -951,7 +946,7 @@ public class KafkaAdminClient extends AdminClient {
 
         /**
          * Time out expired calls that are in flight.
-         *
+         * <p>
          * Calls that are in flight may have been partially or completely sent over the wire. They may
          * even be in the process of being processed by the remote server. At the moment, our only option
          * to time them out is to close the entire connection.
@@ -1181,7 +1176,7 @@ public class KafkaAdminClient extends AdminClient {
 
         /**
          * Queue a call for sending.
-         *
+         * <p>
          * If the AdminClient thread has exited, this will fail. Otherwise, it will succeed (even
          * if the AdminClient is shutting down). This function should called when retrying an
          * existing call.
@@ -1210,7 +1205,7 @@ public class KafkaAdminClient extends AdminClient {
 
         /**
          * Initiate a new call.
-         *
+         * <p>
          * This will fail if the AdminClient is scheduled to shut down.
          *
          * @param call      The new call object.

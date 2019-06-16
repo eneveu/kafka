@@ -27,7 +27,7 @@ import static org.apache.kafka.common.protocol.CommonFields.ERROR_MESSAGE;
 /**
  * Encapsulates an error code (via the Errors enum) and an optional message. Generally, the optional message is only
  * defined if it adds information over the default message associated with the error code.
- *
+ * <p>
  * This is an internal class (like every class in the requests package).
  */
 public class ApiError {

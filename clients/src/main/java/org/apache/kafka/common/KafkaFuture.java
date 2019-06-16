@@ -27,7 +27,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * A flexible future which supports call chaining and other asynchronous programming patterns. This will
  * eventually become a thin shim on top of Java 8's CompletableFuture.
- *
+ * <p>
  * The API for this class is still evolving and we may break compatibility in minor releases, if necessary.
  */
 @InterfaceStability.Evolving
@@ -41,7 +41,7 @@ public abstract class KafkaFuture<T> implements Future<T> {
 
     /**
      * A function which takes objects of type A and returns objects of type B.
-     *
+     * <p>
      * Prefer the functional interface {@link BaseFunction} over the class {@link Function}.  This class is here for
      * backwards compatibility reasons and might be deprecated/removed in a future release.
      */
@@ -109,7 +109,7 @@ public abstract class KafkaFuture<T> implements Future<T> {
     /**
      * Returns a new KafkaFuture that, when this future completes normally, is executed with this
      * futures's result as the argument to the supplied function.
-     *
+     * <p>
      * The function may be invoked by the thread that calls {@code thenApply} or it may be invoked by the thread that
      * completes the future.
      */
@@ -126,17 +126,17 @@ public abstract class KafkaFuture<T> implements Future<T> {
     /**
      * Returns a new KafkaFuture with the same result or exception as this future, that executes the given action
      * when this future completes.
-     *
+     * <p>
      * When this future is done, the given action is invoked with the result (or null if none) and the exception
      * (or null if none) of this future as arguments.
-     *
+     * <p>
      * The returned future is completed when the action returns.
      * The supplied action should not throw an exception. However, if it does, the following rules apply:
      * if this future completed normally but the supplied action throws an exception, then the returned future completes
      * exceptionally with the supplied action's exception.
      * Or, if this future completed exceptionally and the supplied action throws an exception, then the returned future
      * completes exceptionally with this future's exception.
-     *
+     * <p>
      * The action may be invoked by the thread that calls {@code whenComplete} or it may be invoked by the thread that
      * completes the future.
      *

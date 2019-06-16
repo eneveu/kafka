@@ -25,7 +25,6 @@ import java.util.Map;
 /**
  * A plugin interface that allows you to intercept (and possibly mutate) records received by the consumer. A primary use-case
  * is for third-party components to hook into the consumer applications for custom monitoring, logging, etc.
- *
  * <p>
  * This class will get consumer config properties via <code>configure()</code> method, including clientId assigned
  * by KafkaConsumer if not specified in the consumer config. The interceptor implementation needs to be aware that it will be

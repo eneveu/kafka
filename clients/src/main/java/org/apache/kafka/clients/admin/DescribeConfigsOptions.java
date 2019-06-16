@@ -23,7 +23,7 @@ import java.util.Collection;
 
 /**
  * Options for {@link AdminClient#describeConfigs(Collection)}.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving
@@ -34,7 +34,6 @@ public class DescribeConfigsOptions extends AbstractOptions<DescribeConfigsOptio
     /**
      * Set the request timeout in milliseconds for this operation or {@code null} if the default request timeout for the
      * AdminClient should be used.
-     *
      */
     // This method is retained to keep binary compatibility with 0.11
     public DescribeConfigsOptions timeoutMs(Integer timeoutMs) {

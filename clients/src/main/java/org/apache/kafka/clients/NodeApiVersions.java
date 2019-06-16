@@ -114,7 +114,7 @@ public class NodeApiVersions {
     }
 
     /**
-     * Convert the object to a string with no linebreaks.<p/>
+     * Convert the object to a string with no linebreaks.
      * <p>
      * This toString method is relatively expensive, so avoid calling it unless debug logging is turned on.
      */

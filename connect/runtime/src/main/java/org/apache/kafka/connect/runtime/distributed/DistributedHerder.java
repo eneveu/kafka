@@ -86,33 +86,28 @@ import java.util.stream.Collectors;
 import static org.apache.kafka.connect.runtime.distributed.ConnectProtocol.CONNECT_PROTOCOL_V0;
 
 /**
+ * Distributed "herder" that coordinates with other workers to spread work across multiple processes.
  * <p>
- *     Distributed "herder" that coordinates with other workers to spread work across multiple processes.
- * </p>
+ * Under the hood, this is implemented as a group managed by Kafka's group membership facilities (i.e. the generalized
+ * group/consumer coordinator). Each instance of DistributedHerder joins the group and indicates what it's current
+ * configuration state is (where it is in the configuration log). The group coordinator selects one member to take
+ * this information and assign each instance a subset of the active connectors & tasks to execute. This assignment
+ * is currently performed in a simple round-robin fashion, but this is not guaranteed -- the herder may also choose
+ * to, e.g., use a sticky assignment to avoid the usual start/stop costs associated with connectors and tasks. Once
+ * an assignment is received, the DistributedHerder simply runs its assigned connectors and tasks in a Worker.
  * <p>
- *     Under the hood, this is implemented as a group managed by Kafka's group membership facilities (i.e. the generalized
- *     group/consumer coordinator). Each instance of DistributedHerder joins the group and indicates what it's current
- *     configuration state is (where it is in the configuration log). The group coordinator selects one member to take
- *     this information and assign each instance a subset of the active connectors & tasks to execute. This assignment
- *     is currently performed in a simple round-robin fashion, but this is not guaranteed -- the herder may also choose
- *     to, e.g., use a sticky assignment to avoid the usual start/stop costs associated with connectors and tasks. Once
- *     an assignment is received, the DistributedHerder simply runs its assigned connectors and tasks in a Worker.
- * </p>
+ * In addition to distributing work, the DistributedHerder uses the leader determined during the work assignment
+ * to select a leader for this generation of the group who is responsible for other tasks that can only be performed
+ * by a single node at a time. Most importantly, this includes writing updated configurations for connectors and tasks,
+ * (and therefore, also for creating, destroy, and scaling up/down connectors).
  * <p>
- *     In addition to distributing work, the DistributedHerder uses the leader determined during the work assignment
- *     to select a leader for this generation of the group who is responsible for other tasks that can only be performed
- *     by a single node at a time. Most importantly, this includes writing updated configurations for connectors and tasks,
- *     (and therefore, also for creating, destroy, and scaling up/down connectors).
- * </p>
- * <p>
- *     The DistributedHerder uses a single thread for most of its processing. This includes processing
- *     config changes, handling task rebalances and serving requests from the HTTP layer. The latter are pushed
- *     into a queue until the thread has time to handle them. A consequence of this is that requests can get blocked
- *     behind a worker rebalance. When the herder knows that a rebalance is expected, it typically returns an error
- *     immediately to the request, but this is not always possible (in particular when another worker has requested
- *     the rebalance). Similar to handling HTTP requests, config changes which are observed asynchronously by polling
- *     the config log are batched for handling in the work thread.
- * </p>
+ * The DistributedHerder uses a single thread for most of its processing. This includes processing
+ * config changes, handling task rebalances and serving requests from the HTTP layer. The latter are pushed
+ * into a queue until the thread has time to handle them. A consequence of this is that requests can get blocked
+ * behind a worker rebalance. When the herder knows that a rebalance is expected, it typically returns an error
+ * immediately to the request, but this is not always possible (in particular when another worker has requested
+ * the rebalance). Similar to handling HTTP requests, config changes which are observed asynchronously by polling
+ * the config log are batched for handling in the work thread.
  */
 public class DistributedHerder extends AbstractHerder implements Runnable {
     private static final AtomicInteger CONNECT_CLIENT_ID_SEQUENCE = new AtomicInteger(1);

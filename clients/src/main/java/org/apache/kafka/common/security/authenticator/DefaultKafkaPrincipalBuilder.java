@@ -46,7 +46,7 @@ import static java.util.Objects.requireNonNull;
  * SSL authentication and SASL authentication. In the latter case, when GSSAPI is used, this
  * class applies {@link org.apache.kafka.common.security.kerberos.KerberosShortNamer} to transform
  * the name.
- *
+ * <p>
  * NOTE: This is an internal class and can change without notice. Unlike normal implementations
  * of {@link KafkaPrincipalBuilder}, there is no default no-arg constructor since this class
  * must adapt implementations of the older {@link org.apache.kafka.common.security.auth.PrincipalBuilder} interface.

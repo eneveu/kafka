@@ -81,7 +81,7 @@ public interface RecordBatch extends Iterable<Record> {
 
     /**
      * Get the max timestamp or log append time of this record batch.
-     *
+     * <p>
      * If the timestamp type is create time, this is the max timestamp among all records contained in this batch and
      * the value is updated during compaction.
      *
@@ -103,7 +103,7 @@ public interface RecordBatch extends Iterable<Record> {
      * return the offset of the first record in the record batch. For magic version 2 and above, this will return
      * the first offset of the original record batch (i.e. prior to compaction). For non-compacted topics, the
      * behavior is equivalent.
-     *
+     * <p>
      * Because this requires deep iteration for older magic versions, this method should be used with
      * caution. Generally {@link #lastOffset()} is safer since access is efficient for all magic versions.
      *

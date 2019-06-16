@@ -88,7 +88,7 @@ public class InternalTopicManager {
 
     /**
      * Prepares a set of given internal topics.
-     *
+     * <p>
      * If a topic does not exist creates a new topic.
      * If a topic with the correct number of partitions exists ignores it.
      * If a topic exists already but has different number of partitions we fail and throw exception requesting user to reset the app before restarting again.
@@ -172,7 +172,7 @@ public class InternalTopicManager {
 
     /**
      * Try to get the number of partitions for the given topics; return the number of partitions for topics that already exists.
-     *
+     * <p>
      * Topics that were not able to get its description will simply not be returned
      */
     // visible for testing

@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 
 /**
  * An interface abstracting the clock to use in unit testing classes that make use of clock time.
- *
+ * <p>
  * Implementations of this class should be thread-safe.
  */
 public interface Time {
@@ -43,8 +43,8 @@ public interface Time {
 
     /**
      * Returns the current value of the running JVM's high-resolution time source, in nanoseconds.
-     *
-     * <p>This method can only be used to measure elapsed time and is
+     * <p>
+     * This method can only be used to measure elapsed time and is
      * not related to any other notion of system or wall-clock time.
      * The value returned represents nanoseconds since some fixed but
      * arbitrary <i>origin</i> time (perhaps in the future, so values

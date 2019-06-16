@@ -32,7 +32,7 @@ import org.apache.kafka.common.KafkaFuture;
 public class KafkaFutureImpl<T> extends KafkaFuture<T> {
     /**
      * A convenience method that throws the current exception, wrapping it if needed.
-     *
+     * <p>
      * In general, KafkaFuture throws CancellationException and InterruptedException directly, and
      * wraps all other exceptions in an ExecutionException.
      */

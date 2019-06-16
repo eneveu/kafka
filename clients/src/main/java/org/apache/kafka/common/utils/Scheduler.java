@@ -22,7 +22,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * An interface for scheduling tasks for the future.
- *
+ * <p>
  * Implementations of this class should be thread-safe.
  */
 public interface Scheduler {

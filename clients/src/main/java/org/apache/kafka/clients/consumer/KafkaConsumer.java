@@ -439,7 +439,7 @@ import java.util.regex.Pattern;
  * successfully committed. It will continue to read non-transactional messages as before. There is no client-side
  * buffering in <code>read_committed</code> mode. Instead, the end offset of a partition for a <code>read_committed</code>
  * consumer would be the offset of the first message in the partition belonging to an open transaction. This offset
- * is known as the 'Last Stable Offset'(LSO).</p>
+ * is known as the 'Last Stable Offset'(LSO).
  *
  * <p>
  * A {@code read_committed} consumer will only read up to the LSO and filter out any transactional
@@ -902,9 +902,8 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
      * assigned partitions. <b>Topic subscriptions are not incremental. This list will replace the current
      * assignment (if there is one).</b> Note that it is not possible to combine topic subscription with group management
      * with manual partition assignment through {@link #assign(Collection)}.
-     *
+     * <p>
      * If the given list of topics is empty, it is treated the same as {@link #unsubscribe()}.
-     *
      * <p>
      * As part of group management, the consumer will keep track of the list of consumers that belong to a particular
      * group and will trigger a rebalance operation if any one of the following events are triggered:
@@ -919,7 +918,7 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
      * the consumer's assignment has been revoked, and then again when the new assignment has been received.
      * Note that rebalances will only occur during an active call to {@link #poll(Duration)}, so callbacks will
      * also only be invoked during that time.
-     *
+     * <p>
      * The provided listener will immediately override any listener set in a previous call to subscribe.
      * It is guaranteed, however, that the partitions revoked/assigned through this interface are from topics
      * subscribed in this call. See {@link ConsumerRebalanceListener} for more details.
@@ -964,9 +963,8 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
      * <b>Topic subscriptions are not incremental. This list will replace the current
      * assignment (if there is one).</b> It is not possible to combine topic subscription with group management
      * with manual partition assignment through {@link #assign(Collection)}.
-     *
+     * <p>
      * If the given list of topics is empty, it is treated the same as {@link #unsubscribe()}.
-     *
      * <p>
      * This is a short-hand for {@link #subscribe(Collection, ConsumerRebalanceListener)}, which
      * uses a no-op listener. If you need the ability to seek to particular offsets, you should prefer
@@ -1117,7 +1115,6 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
      * consumed offset can be manually set through {@link #seek(TopicPartition, long)} or automatically set as the last committed
      * offset for the subscribed list of partitions
      *
-     *
      * @param timeoutMs The time, in milliseconds, spent waiting in poll if data is not available in the buffer.
      *            If 0, returns immediately with any records that are available currently in the buffer, else returns empty.
      *            Must not be negative.
@@ -1155,12 +1152,10 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
      * On each poll, consumer will try to use the last consumed offset as the starting offset and fetch sequentially. The last
      * consumed offset can be manually set through {@link #seek(TopicPartition, long)} or automatically set as the last committed
      * offset for the subscribed list of partitions
-     *
      * <p>
      * This method returns immediately if there are records available. Otherwise, it will await the passed timeout.
      * If the timeout expires, an empty record set will be returned. Note that this method may block beyond the
      * timeout in order to execute custom {@link ConsumerRebalanceListener} callbacks.
-     *
      *
      * @param timeout The maximum time to block (must not be greater than {@link Long#MAX_VALUE} milliseconds)
      *
@@ -1940,7 +1935,7 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
     /**
      * Look up the offsets for the given partitions by timestamp. The returned offset for each partition is the
      * earliest offset whose timestamp is greater than or equal to the given timestamp in the corresponding partition.
-     *
+     * <p>
      * This is a blocking call. The consumer does not have to be assigned the partitions.
      * If the message format version in a partition is before 0.10.0, i.e. the messages do not have timestamps, null
      * will be returned for that partition.
@@ -1966,7 +1961,7 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
     /**
      * Look up the offsets for the given partitions by timestamp. The returned offset for each partition is the
      * earliest offset whose timestamp is greater than or equal to the given timestamp in the corresponding partition.
-     *
+     * <p>
      * This is a blocking call. The consumer does not have to be assigned the partitions.
      * If the message format version in a partition is before 0.10.0, i.e. the messages do not have timestamps, null
      * will be returned for that partition.
@@ -2053,7 +2048,6 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
      * {@code read_committed} consumers, the end offset is the last stable offset (LSO), which is the minimum of
      * the high watermark and the smallest offset of any open transaction. Finally, if the partition has never been
      * written to, the end offset is 0.
-     *
      * <p>
      * This method does not change the current consumer position of the partitions.
      *
@@ -2077,7 +2071,6 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
      * {@code read_committed} consumers, the end offset is the last stable offset (LSO), which is the minimum of
      * the high watermark and the smallest offset of any open transaction. Finally, if the partition has never been
      * written to, the end offset is 0.
-     *
      * <p>
      * This method does not change the current consumer position of the partitions.
      *

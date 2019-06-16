@@ -66,7 +66,7 @@ public class DeleteAclsResponse extends AbstractResponse {
 
     /**
      * V1 sees a new `RESOURCE_PATTERN_TYPE` that defines the type of the resource pattern.
-     *
+     * <p>
      * For more info, see {@link PatternType}.
      */
     private static final Schema MATCHING_ACL_V1 = new Schema(
@@ -91,7 +91,7 @@ public class DeleteAclsResponse extends AbstractResponse {
     /**
      * V1 sees a new `RESOURCE_PATTERN_TYPE` field added to MATCHING_ACL_V1, that describes how the resource pattern is interpreted
      * and version was bumped to indicate that, on quota violation, brokers send out responses before throttling.
-     *
+     * <p>
      * For more info, see {@link PatternType}.
      */
     private static final Schema DELETE_ACLS_RESPONSE_V1 = new Schema(

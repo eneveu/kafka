@@ -49,7 +49,7 @@ import static org.apache.kafka.common.record.RecordBatch.NO_TIMESTAMP;
 
 /**
  * A batch of records that is or will be sent.
- *
+ * <p>
  * This class is not thread safe and external synchronization must be used when modifying it
  */
 public final class ProducerBatch {
@@ -173,7 +173,7 @@ public final class ProducerBatch {
      * try to set SUCCEEDED final state.
      * 2. If a transaction abortion happens or if the producer is closed forcefully, the final state is
      * ABORTED but again it could succeed if broker responds with a success.
-     *
+     * <p>
      * Attempted transitions from [FAILED | ABORTED] --> SUCCEEDED are logged.
      * Attempted transitions from one failure state to the same or a different failed state are ignored.
      * Attempted transitions from SUCCEEDED to the same or a failed state throw an exception.

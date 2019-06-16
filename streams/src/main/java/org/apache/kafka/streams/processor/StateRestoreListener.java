@@ -53,11 +53,11 @@ public interface StateRestoreListener {
     /**
      * Method called after restoring a batch of records.  In this case the maximum size of the batch is whatever
      * the value of the MAX_POLL_RECORDS is set to.
-     *
+     * <p>
      * This method is called after restoring each batch and it is advised to keep processing to a minimum.
      * Any heavy processing will hold up recovering the next batch, hence slowing down the restore process as a
      * whole.
-     *
+     * <p>
      * If you need to do any extended processing or connecting to an external service consider doing so asynchronously.
      *
      * @param topicPartition the TopicPartition containing the values to restore

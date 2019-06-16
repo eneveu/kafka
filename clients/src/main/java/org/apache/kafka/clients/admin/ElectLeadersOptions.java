@@ -21,7 +21,7 @@ import org.apache.kafka.common.annotation.InterfaceStability;
 
 /**
  * Options for {@link AdminClient#electLeaders(ElectionType, Set, ElectLeadersOptions)}.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

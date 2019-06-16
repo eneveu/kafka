@@ -45,7 +45,7 @@ public class ProducerInterceptors<K, V> implements Closeable {
      * The method calls {@link ProducerInterceptor#onSend(ProducerRecord)} method. ProducerRecord
      * returned from the first interceptor's onSend() is passed to the second interceptor onSend(), and so on in the
      * interceptor chain. The record returned from the last interceptor is returned from this method.
-     *
+     * <p>
      * This method does not throw exceptions. Exceptions thrown by any of interceptor methods are caught and ignored.
      * If an interceptor in the middle of the chain, that normally modifies the record, throws an exception,
      * the next interceptor in the chain will be called with a record returned by the previous interceptor that did not
@@ -75,7 +75,7 @@ public class ProducerInterceptors<K, V> implements Closeable {
      * This method is called when the record sent to the server has been acknowledged, or when sending the record fails before
      * it gets sent to the server. This method calls {@link ProducerInterceptor#onAcknowledgement(RecordMetadata, Exception)}
      * method for each interceptor.
-     *
+     * <p>
      * This method does not throw exceptions. Exceptions thrown by any of interceptor methods are caught and ignored.
      *
      * @param metadata The metadata for the record that was sent (i.e. the partition and offset).

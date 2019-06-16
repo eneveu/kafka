@@ -21,12 +21,12 @@ import java.util.zip.Checksum;
 
 /**
  * This class was taken from Hadoop org.apache.hadoop.util.PureJavaCrc32
- * 
+ * <p>
  * A pure-java implementation of the CRC32 checksum that uses the same polynomial as the built-in native CRC32.
- * 
+ * <p>
  * This is to avoid the JNI overhead for certain uses of Checksumming where many small pieces of data are checksummed in
  * succession.
- * 
+ * <p>
  * The current version is ~10x to 1.8x as fast as Sun's native java.util.zip.CRC32 in Java 1.6
  * 
  * @see java.util.zip.CRC32

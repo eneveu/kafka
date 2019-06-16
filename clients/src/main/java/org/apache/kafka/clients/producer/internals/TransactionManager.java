@@ -454,15 +454,15 @@ public class TransactionManager {
     /**
      * This method is used when the producer needs to reset its internal state because of an irrecoverable exception
      * from the broker.
-     *
+     * <p>
      * We need to reset the producer id and associated state when we have sent a batch to the broker, but we either get
      * a non-retriable exception or we run out of retries, or the batch expired in the producer queue after it was already
      * sent to the broker.
-     *
+     * <p>
      * In all of these cases, we don't know whether batch was actually committed on the broker, and hence whether the
      * sequence number was actually updated. If we don't reset the producer state, we risk the chance that all future
      * messages will return an OutOfOrderSequenceException.
-     *
+     * <p>
      * Note that we can't reset the producer state for the transactional producer as this would mean bumping the epoch
      * for the same producer id. This might involve aborting the ongoing transaction during the initPidRequest, and the user
      * would not have any way of knowing this happened. So for the transactional producer, it's best to return the

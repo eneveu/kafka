@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * The result of {@link AdminClient#createTopics(Collection)}.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

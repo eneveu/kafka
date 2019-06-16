@@ -60,7 +60,6 @@ import scala.collection.JavaConverters._
   * AdminClient returns all config synonyms in the order of precedence when configs are described with
   * <code>includeSynonyms</code>. In addition to configs that may be defined with the same name at different levels,
   * some configs have additional synonyms.
-  * </p>
   * <ul>
   *   <li>Listener configs may be defined using the prefix <tt>listener.name.{listenerName}.{configName}</tt>. These may be
   *       configured as dynamic or static broker configs. Listener configs have higher precedence than the base configs

@@ -89,7 +89,7 @@ public abstract class Type {
     /**
      * The Boolean type represents a boolean value in a byte by using
      * the value of 0 to represent false, and 1 to represent true.
-     *
+     * <p>
      * If for some reason a value that is not 0 or 1 is read,
      * then any non-zero value will return true.
      */

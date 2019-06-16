@@ -24,12 +24,12 @@ import org.apache.kafka.connect.header.Headers;
 import java.util.Objects;
 
 /**
+ * Base class for records containing data to be copied to/from Kafka.
  * <p>
- * Base class for records containing data to be copied to/from Kafka. This corresponds closely to
+ * This corresponds closely to
  * Kafka's {@link org.apache.kafka.clients.producer.ProducerRecord ProducerRecord} and {@link org.apache.kafka.clients.consumer.ConsumerRecord ConsumerRecord} classes, and holds the data that may be used by both
  * sources and sinks (topic, kafkaPartition, key, value). Although both implementations include a
  * notion of offset, it is not included here because they differ in type.
- * </p>
  */
 public abstract class ConnectRecord<R extends ConnectRecord<R>> {
     private final String topic;

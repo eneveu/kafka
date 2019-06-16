@@ -39,7 +39,6 @@ public abstract class AbstractProcessor<K, V> implements Processor<K, V> {
      * Close this processor and clean up any resources.
      * <p>
      * This method does nothing by default; if desired, subclasses should override it with custom functionality.
-     * </p>
      */
     @Override
     public void close() {

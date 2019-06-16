@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * A scheduler implementation that uses the system clock.
- *
+ * <p>
  * Use Scheduler.SYSTEM instead of constructing an instance of this class.
  */
 public class SystemScheduler implements Scheduler {

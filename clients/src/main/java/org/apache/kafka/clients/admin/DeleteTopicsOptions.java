@@ -23,7 +23,7 @@ import java.util.Collection;
 
 /**
  * Options for {@link AdminClient#deleteTopics(Collection)}.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

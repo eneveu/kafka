@@ -29,7 +29,7 @@ import org.apache.kafka.common.metrics.MetricConfig;
  * <p>
  * All the samples are combined to produce the measurement. When a window is complete the oldest sample is cleared and
  * recycled to begin recording the next sample.
- * 
+ * <p>
  * Subclasses of this class define different statistics measured using this basic pattern.
  */
 public abstract class SampledStat implements MeasurableStat {

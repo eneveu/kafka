@@ -100,7 +100,7 @@ public interface TransportLayer extends ScatteringByteChannel, GatheringByteChan
 
     /**
      * Transfers bytes from `fileChannel` to this `TransportLayer`.
-     *
+     * <p>
      * This method will delegate to {@link FileChannel#transferTo(long, long, java.nio.channels.WritableByteChannel)},
      * but it will unwrap the destination channel, if possible, in order to benefit from zero copy. This is required
      * because the fast path of `transferTo` is only executed if the destination buffer inherits from an internal JDK

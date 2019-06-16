@@ -565,7 +565,7 @@ public class Fetcher<K, V> implements Closeable {
 
     /**
      * Return the fetched records, empty the record buffer and update the consumed position.
-     *
+     * <p>
      * NOTE: returning empty records guarantees the consumed position are NOT updated.
      *
      * @return The fetched records per partition
@@ -727,7 +727,7 @@ public class Fetcher<K, V> implements Closeable {
     /**
      * For each partition which needs validation, make an asynchronous request to get the end-offsets for the partition
      * with the epoch less than or equal to the epoch the partition last saw.
-     *
+     * <p>
      * Requests are grouped by Node for efficiency.
      */
     private void validateOffsetsAsync(Map<TopicPartition, SubscriptionState.FetchPosition> partitionsToValidate) {

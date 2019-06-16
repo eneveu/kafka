@@ -28,7 +28,7 @@ public interface SinkTaskContext {
 
     /**
      * Get the Task configuration.  This is the latest configuration and may differ from that passed on startup.
-     *
+     * <p>
      * For example, this method can be used to obtain the latest configuration if an external secret has changed,
      * and the configuration is using variable references such as those compatible with
      * {@link org.apache.kafka.common.config.ConfigTransformer}.
@@ -40,7 +40,7 @@ public interface SinkTaskContext {
      * in the sink data store rather than using Kafka consumer offsets. For example, an HDFS connector might record
      * offsets in HDFS to provide exactly once delivery. When the SinkTask is started or a rebalance occurs, the task
      * would reload offsets from HDFS and use this method to reset the consumer to those offsets.
-     *
+     * <p>
      * SinkTasks that do not manage their own offsets do not need to use this method.
      *
      * @param offsets map of offsets for topic partitions
@@ -52,7 +52,7 @@ public interface SinkTaskContext {
      * in the sink data store rather than using Kafka consumer offsets. For example, an HDFS connector might record
      * offsets in HDFS to provide exactly once delivery. When the topic partition is recovered the task
      * would reload offsets from HDFS and use this method to reset the consumer to the offset.
-     *
+     * <p>
      * SinkTasks that do not manage their own offsets do not need to use this method.
      *
      * @param tp the topic partition to reset offset.
@@ -90,7 +90,7 @@ public interface SinkTaskContext {
     /**
      * Request an offset commit. Sink tasks can use this to minimize the potential for redelivery
      * by requesting an offset commit as soon as they flush data to the destination system.
-     *
+     * <p>
      * It is only a hint to the runtime and no timing guarantee should be assumed.
      */
     void requestCommit();

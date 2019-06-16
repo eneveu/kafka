@@ -319,7 +319,7 @@ public class RocksDBStore implements KeyValueStore<Bytes, byte[]>, BulkLoadingSt
 
     /**
      * Return an approximate count of key-value mappings in this store.
-     *
+     * <p>
      * <code>RocksDB</code> cannot return an exact entry count without doing a
      * full scan, so this method relies on the <code>rocksdb.estimate-num-keys</code>
      * property to get an approximate count. The returned size also includes

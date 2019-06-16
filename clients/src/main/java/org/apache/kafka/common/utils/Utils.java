@@ -544,11 +544,10 @@ public final class Utils {
     }
 
     /**
-     *  Converts an extensions string into a {@code Map<String, String>}.
-     *
+     * Converts an extensions string into a {@code Map<String, String>}.
+     * <p>
      *  Example:
      *      {@code parseMap("key=hey,keyTwo=hi,keyThree=hello", "=", ",") => { key: "hey", keyTwo: "hi", keyThree: "hello" }}
-     *
      */
     public static Map<String, String> parseMap(String mapStr, String keyValueSeparator, String elementSeparator) {
         Map<String, String> map = new HashMap<>();
@@ -791,7 +790,7 @@ public final class Utils {
     /**
      * Get the Context ClassLoader on this thread or, if not present, the ClassLoader that
      * loaded Kafka.
-     *
+     * <p>
      * This should be used whenever passing a ClassLoader to Class.forName
      */
     public static ClassLoader getContextOrKafkaClassLoader() {
@@ -875,7 +874,7 @@ public final class Utils {
      * positive, the original value is returned. When the input number is negative, the returned
      * positive value is the original value bit AND against 0x7fffffff which is not its absolutely
      * value.
-     *
+     * <p>
      * Note: changing this method in the future will possibly cause partition selection not to be
      * compatible with the existing messages already placed on a partition since it is used
      * in producer's {@link org.apache.kafka.clients.producer.internals.DefaultPartitioner}

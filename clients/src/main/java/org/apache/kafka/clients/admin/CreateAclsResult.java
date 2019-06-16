@@ -26,7 +26,7 @@ import java.util.Map;
 
 /**
  * The result of the {@link AdminClient#createAcls(Collection)} call.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

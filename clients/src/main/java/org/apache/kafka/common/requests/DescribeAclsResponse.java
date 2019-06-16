@@ -62,7 +62,7 @@ public class DescribeAclsResponse extends AbstractResponse {
 
     /**
      * V1 sees a new `RESOURCE_PATTERN_TYPE` that defines the type of the resource pattern.
-     *
+     * <p>
      * For more info, see {@link PatternType}.
      */
     private static final Schema DESCRIBE_ACLS_RESOURCE_V1 = new Schema(
@@ -84,7 +84,7 @@ public class DescribeAclsResponse extends AbstractResponse {
     /**
      * V1 sees a new `RESOURCE_PATTERN_TYPE` field added to DESCRIBE_ACLS_RESOURCE_V1, that describes how the resource name is interpreted
      * and version was bumped to indicate that, on quota violation, brokers send out responses before throttling.
-     *
+     * <p>
      * For more info, see {@link PatternType}.
      */
     private static final Schema DESCRIBE_ACLS_RESPONSE_V1 = new Schema(

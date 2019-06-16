@@ -375,7 +375,7 @@ public class StreamsBuilder {
 
     /**
      * Create a {@link GlobalKTable} for the specified topic.
-     *
+     * <p>
      * Input {@link KeyValue} pairs with {@code null} key will be dropped.
      * <p>
      * The resulting {@link GlobalKTable} will be materialized in a local {@link KeyValueStore} configured with
@@ -423,7 +423,7 @@ public class StreamsBuilder {
 
     /**
      * Create a {@link GlobalKTable} for the specified topic.
-     *
+     * <p>
      * Input {@link KeyValue} pairs with {@code null} key will be dropped.
      * <p>
      * The resulting {@link GlobalKTable} will be materialized in a local {@link KeyValueStore} configured with

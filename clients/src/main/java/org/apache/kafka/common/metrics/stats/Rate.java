@@ -77,7 +77,7 @@ public class Rate implements MeasurableStat {
          * However, there is an issue if we do not have sufficient data for e.g. if only 1 second has elapsed in a 30 second
          * window, the measured rate will be very high.
          * Hence we assume that the elapsed time is always N-1 complete windows plus whatever fraction of the final window is complete.
-         *
+         * <p>
          * Note that we could simply count the amount of time elapsed in the current window and add n-1 windows to get the total time,
          * but this approach does not account for sleeps. SampledStat only creates samples whenever record is called,
          * if no record is called for a period of time that time is not accounted for in windowSize and produces incorrect results.

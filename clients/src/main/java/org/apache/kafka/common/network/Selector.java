@@ -69,7 +69,7 @@ import java.util.concurrent.atomic.AtomicReference;
  *
  * The connect call does not block on the creation of the TCP connection, so the connect method only begins initiating
  * the connection. The successful invocation of this method does not mean a valid connection has been established.
- *
+ * <p>
  * Sending requests, receiving responses, processing connection completions, and disconnections on the existing
  * connections are all done using the <code>poll()</code> call.
  *
@@ -81,7 +81,7 @@ import java.util.concurrent.atomic.AtomicReference;
  *
  * The nioSelector maintains several lists that are reset by each call to <code>poll()</code> which are available via
  * various getters. These are reset by each call to <code>poll()</code>.
- *
+ * <p>
  * This class is not thread safe!
  */
 public class Selector implements Selectable, AutoCloseable {
@@ -304,10 +304,9 @@ public class Selector implements Selectable, AutoCloseable {
      * Kafka brokers add an incrementing index to the connection id to avoid reuse in the timing window
      * where an existing connection may not yet have been closed by the broker when a new connection with
      * the same remote host:port is processed.
-     * </p><p>
+     * <p>
      * If a `KafkaChannel` cannot be created for this connection, the `socketChannel` is closed
      * and its selection key cancelled.
-     * </p>
      */
     public void register(String id, SocketChannel socketChannel) throws IOException {
         ensureNotRegistered(id);
@@ -411,12 +410,12 @@ public class Selector implements Selectable, AutoCloseable {
     /**
      * Do whatever I/O can be done on each connection without blocking. This includes completing connections, completing
      * disconnections, initiating new sends, or making progress on in-progress sends or receives.
-     *
+     * <p>
      * When this call is completed the user can check for completed sends, receives, connections or disconnects using
      * {@link #completedSends()}, {@link #completedReceives()}, {@link #connected()}, {@link #disconnected()}. These
      * lists will be cleared at the beginning of each `poll` call and repopulated by the call if there is
      * any completed I/O.
-     *
+     * <p>
      * In the "Plaintext" setting, we are using socketChannel to read & write to the network. But for the "SSL" setting,
      * we encrypt the data before we use socketChannel to write data to the network, and decrypt before we return the responses.
      * This requires additional buffers to be maintained as we are reading from network, since the data on the wire is encrypted
@@ -427,7 +426,7 @@ public class Selector implements Selectable, AutoCloseable {
      * reading a channel we read as many responses as we can and store them into "stagedReceives" and pop one response during
      * the poll to add the completedReceives. If there are any active channels in the "stagedReceives" we set "timeout" to 0
      * and pop response and add to the completedReceives.
-     *
+     * <p>
      * Atmost one entry is added to "completedReceives" for a channel in each poll. This is necessary to guarantee that
      * requests from a channel are processed on the broker in the order they are sent. Since outstanding requests added
      * by SocketServer to the request queue may be processed by different request handler threads, requests on each
@@ -832,11 +831,12 @@ public class Selector implements Selectable, AutoCloseable {
 
     /**
      * Begin closing this connection.
+     * <p>
      * If 'closeMode' is `CloseMode.GRACEFUL`, the channel is disconnected here, but staged receives
      * are processed. The channel is closed when there are no outstanding receives or if a send is
      * requested. For other values of `closeMode`, outstanding receives are discarded and the channel
      * is closed immediately.
-     *
+     * <p>
      * The channel will be added to disconnect list when it is actually closed if `closeMode.notifyDisconnect`
      * is true.
      */
@@ -935,7 +935,7 @@ public class Selector implements Selectable, AutoCloseable {
      *   1) If one or more channels are in closing state, return any one of them
      *   2) If idle expiry manager is enabled, return the least recently updated channel
      *   3) Otherwise return any of the channels
-     *
+     * <p>
      * This method is used to close a channel to accommodate a new channel on the inter-broker listener
      * when broker-wide `max.connections` limit is enabled.
      */

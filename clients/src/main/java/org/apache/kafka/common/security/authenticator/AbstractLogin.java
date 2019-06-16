@@ -80,7 +80,6 @@ public abstract class AbstractLogin implements Login {
      * should support the callbacks required for the login modules used by
      * the KafkaServer and KafkaClient contexts. Kafka does not support
      * callback handlers which require additional user input.
-     *
      */
     public static class DefaultLoginCallbackHandler implements AuthenticateCallbackHandler {
 

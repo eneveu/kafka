@@ -44,7 +44,6 @@ public interface TimestampExtractor {
      * The message timestamp is used for log retention and log rolling, so using nonsensical values may result in
      * excessive log rolling and therefore broker performance degradation.
      *
-     *
      * @param record a data record
      * @param previousTimestamp the latest extracted valid timestamp of the current record's partition˙ (could be -1 if unknown)
      * @return the timestamp of the record

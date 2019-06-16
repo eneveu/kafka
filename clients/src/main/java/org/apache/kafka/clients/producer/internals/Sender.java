@@ -288,7 +288,6 @@ public class Sender implements Runnable {
 
     /**
      * Run a single iteration of sending
-     *
      */
     void runOnce() {
         if (transactionManager != null) {

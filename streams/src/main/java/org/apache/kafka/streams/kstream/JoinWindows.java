@@ -217,7 +217,7 @@ public final class JoinWindows extends Windows<Window> {
     /**
      * Reject late events that arrive more than {@code afterWindowEnd}
      * after the end of its window.
-     *
+     * <p>
      * Lateness is defined as (stream_time - record_timestamp).
      *
      * @param afterWindowEnd The grace period to admit late-arriving events to a window.

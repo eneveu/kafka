@@ -25,19 +25,16 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * A structured record containing a set of named fields with values, each field using an independent {@link Schema}.
+ * Struct objects must specify a complete {@link Schema} up front, and only fields specified in the Schema may be set.
  * <p>
- *     A structured record containing a set of named fields with values, each field using an independent {@link Schema}.
- *     Struct objects must specify a complete {@link Schema} up front, and only fields specified in the Schema may be set.
- * </p>
- * <p>
- *     The Struct's {@link #put(String, Object)} method returns the Struct itself to provide a fluent API for constructing
- *     complete objects:
- *     <pre>
- *         Schema schema = SchemaBuilder.struct().name("com.example.Person")
- *             .field("name", Schema.STRING_SCHEMA).field("age", Schema.INT32_SCHEMA).build()
- *         Struct struct = new Struct(schema).put("name", "Bobby McGee").put("age", 21)
- *     </pre>
- * </p>
+ * The Struct's {@link #put(String, Object)} method returns the Struct itself to provide a fluent API for constructing
+ * complete objects:
+ * <pre>
+ *     Schema schema = SchemaBuilder.struct().name("com.example.Person")
+ *         .field("name", Schema.STRING_SCHEMA).field("age", Schema.INT32_SCHEMA).build()
+ *     Struct struct = new Struct(schema).put("name", "Bobby McGee").put("age", 21)
+ * </pre>
  */
 public class Struct {
 

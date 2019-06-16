@@ -49,7 +49,6 @@ import org.slf4j.LoggerFactory;
  *
  * @see <a href="https://tools.ietf.org/html/rfc6750#section-2.1">RFC 6750,
  *      Section 2.1</a>
- *
  */
 public class OAuthBearerSaslClient implements SaslClient {
     static final byte BYTE_CONTROL_A = (byte) 0x01;

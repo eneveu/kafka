@@ -19,7 +19,7 @@ package org.apache.kafka.common.security.auth;
 /**
  * Pluggable principal builder interface which supports both SSL authentication through
  * {@link SslAuthenticationContext} and SASL through {@link SaslAuthenticationContext}.
- *
+ * <p>
  * Note that the {@link org.apache.kafka.common.Configurable} and {@link java.io.Closeable}
  * interfaces are respected if implemented. Additionally, implementations must provide a
  * default no-arg constructor.

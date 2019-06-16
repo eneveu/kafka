@@ -27,20 +27,20 @@ import java.util.Map;
 /**
  * A plugin interface to allow registration of new JAX-RS resources like Filters, REST endpoints, providers, etc. The implementations will
  * be discovered using the standard Java {@link java.util.ServiceLoader} mechanism by  Connect's plugin class loading mechanism.
- *
- * <p>The extension class(es) must be packaged as a plugin, with one JAR containing the implementation classes and a {@code
+ * <p>
+ * The extension class(es) must be packaged as a plugin, with one JAR containing the implementation classes and a {@code
  * META-INF/services/org.apache.kafka.connect.rest.extension.ConnectRestExtension} file that contains the fully qualified name of the
  * class(es) that implement the ConnectRestExtension interface. The plugin should also include the JARs of all dependencies except those
  * already provided by the Connect framework.
- *
- * <p>To install into a Connect installation, add a directory named for the plugin and containing the plugin's JARs into a directory that is
+ * <p>
+ * To install into a Connect installation, add a directory named for the plugin and containing the plugin's JARs into a directory that is
  * on Connect's {@code plugin.path}, and (re)start the Connect worker.
- *
- * <p>When the Connect worker process starts up, it will read its configuration and instantiate all of the REST extension implementation
+ * <p>
+ * When the Connect worker process starts up, it will read its configuration and instantiate all of the REST extension implementation
  * classes that are specified in the `rest.extension.classes` configuration property. Connect will then pass its configuration to each
  * extension via the {@link Configurable#configure(Map)} method, and will then call {@link #register} with a provided context.
- *
- * <p>When the Connect worker shuts down, it will call the extension's {@link #close} method to allow the implementation to release all of
+ * <p>
+ * When the Connect worker shuts down, it will call the extension's {@link #close} method to allow the implementation to release all of
  * its resources.
  */
 public interface ConnectRestExtension extends Configurable, Versioned, Closeable {

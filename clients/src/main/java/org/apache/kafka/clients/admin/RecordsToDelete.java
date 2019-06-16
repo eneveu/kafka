@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  * Describe records to delete in a call to {@link AdminClient#deleteRecords(Map)}
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

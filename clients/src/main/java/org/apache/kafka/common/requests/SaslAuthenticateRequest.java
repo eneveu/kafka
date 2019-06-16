@@ -27,7 +27,7 @@ import java.nio.ByteBuffer;
 /**
  * Request from SASL client containing client SASL authentication token as defined by the
  * SASL protocol for the configured SASL mechanism.
- * <p/>
+ * <p>
  * For interoperability with versions prior to Kafka 1.0.0, this request is used only with broker
  * version 1.0.0 and higher that support SaslHandshake request v1. Clients connecting to older
  * brokers will send SaslHandshake request v0 followed by SASL tokens without the Kafka request headers.

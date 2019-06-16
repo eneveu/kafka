@@ -28,25 +28,21 @@ import java.util.Map;
 import java.util.concurrent.Future;
 
 /**
- * <p>
  * OffsetStorageWriter is a buffered writer that wraps the simple OffsetBackingStore interface.
  * It maintains a copy of the key-value data in memory and buffers writes. It allows you to take
  * a snapshot, which can then be asynchronously flushed to the backing store while new writes
  * continue to be processed. This allows Kafka Connect to process offset commits in the background
  * while continuing to process messages.
- * </p>
  * <p>
  * Connect uses an OffsetStorage implementation to save state about the current progress of
  * source (import to Kafka) jobs, which may have many input partitions and "offsets" may not be as
  * simple as they are for Kafka partitions or files. Offset storage is not required for sink jobs
  * because they can use Kafka's native offset storage (or the sink data store can handle offset
  * storage to achieve exactly once semantics).
- * </p>
  * <p>
  * Both partitions and offsets are generic data objects. This allows different connectors to use
  * whatever representation they need, even arbitrarily complex records. These are translated
  * internally into the serialized form the OffsetBackingStore uses.
- * </p>
  * <p>
  * Note that this only provides write functionality. This is intentional to ensure stale data is
  * never read. Offset data should only be read during startup or reconfiguration of a task. By
@@ -57,10 +53,8 @@ import java.util.concurrent.Future;
  * of date). Since these offsets are created and managed by the connector itself, there's no way
  * for the offset management layer to know which keys are "owned" by which tasks at any given
  * time.
- * </p>
  * <p>
  * This class is thread-safe.
- * </p>
  */
 public class OffsetStorageWriter {
     private static final Logger log = LoggerFactory.getLogger(OffsetStorageWriter.class);

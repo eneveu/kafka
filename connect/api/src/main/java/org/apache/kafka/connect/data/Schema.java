@@ -21,22 +21,18 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
+ * Definition of an abstract data type. Data types can be primitive types (integer types, floating point types,
+ * boolean, strings, and bytes) or complex types (typed arrays, maps with one key schema and value schema,
+ * and structs that have a fixed set of field names each with an associated value schema). Any type can be specified
+ * as optional, allowing it to be omitted (resulting in null values when it is missing) and can specify a default
+ * value.
  * <p>
- *     Definition of an abstract data type. Data types can be primitive types (integer types, floating point types,
- *     boolean, strings, and bytes) or complex types (typed arrays, maps with one key schema and value schema,
- *     and structs that have a fixed set of field names each with an associated value schema). Any type can be specified
- *     as optional, allowing it to be omitted (resulting in null values when it is missing) and can specify a default
- *     value.
- * </p>
+ * All schemas may have some associated metadata: a name, version, and documentation. These are all considered part
+ * of the schema itself and included when comparing schemas. Besides adding important metadata, these fields enable
+ * the specification of logical types that specify additional constraints and semantics (e.g. UNIX timestamps are
+ * just an int64, but the user needs the know about the additional semantics to interpret it properly).
  * <p>
- *     All schemas may have some associated metadata: a name, version, and documentation. These are all considered part
- *     of the schema itself and included when comparing schemas. Besides adding important metadata, these fields enable
- *     the specification of logical types that specify additional constraints and semantics (e.g. UNIX timestamps are
- *     just an int64, but the user needs the know about the additional semantics to interpret it properly).
- * </p>
- * <p>
- *     Schemas can be created directly, but in most cases using {@link SchemaBuilder} will be simpler.
- * </p>
+ * Schemas can be created directly, but in most cases using {@link SchemaBuilder} will be simpler.
  */
 public interface Schema {
     /**
@@ -45,25 +41,25 @@ public interface Schema {
     enum Type {
         /**
          *  8-bit signed integer
-         *
+         * <p>
          *  Note that if you have an unsigned 8-bit data source, {@link Type#INT16} will be required to safely capture all valid values
          */
         INT8,
         /**
          *  16-bit signed integer
-         *
+         * <p>
          *  Note that if you have an unsigned 16-bit data source, {@link Type#INT32} will be required to safely capture all valid values
          */
         INT16,
         /**
          *  32-bit signed integer
-         *
+         * <p>
          *  Note that if you have an unsigned 32-bit data source, {@link Type#INT64} will be required to safely capture all valid values
          */
         INT32,
         /**
          *  64-bit signed integer
-         *
+         * <p>
          *  Note that if you have an unsigned 64-bit data source, the {@link Decimal} logical type (encoded as {@link Type#BYTES})
          *  will be required to safely capture all valid values
          */
@@ -82,7 +78,7 @@ public interface Schema {
         BOOLEAN,
         /**
          * Character string that supports all Unicode characters.
-         *
+         * <p>
          * Note that this does not imply any specific encoding (e.g. UTF-8) as this is an in-memory representation.
          */
         STRING,

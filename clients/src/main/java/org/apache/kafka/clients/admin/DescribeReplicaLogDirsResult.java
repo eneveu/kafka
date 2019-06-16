@@ -29,7 +29,7 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * The result of {@link AdminClient#describeReplicaLogDirs(Collection)}.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  * Options for {@link AdminClient#createPartitions(Map)}.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

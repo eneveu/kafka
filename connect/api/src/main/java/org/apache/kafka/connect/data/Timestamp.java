@@ -19,10 +19,8 @@ package org.apache.kafka.connect.data;
 import org.apache.kafka.connect.errors.DataException;
 
 /**
- * <p>
- *     A timestamp representing an absolute time, without timezone information. The corresponding Java type is a
- *     java.util.Date. The underlying representation is a long representing the number of milliseconds since Unix epoch.
- * </p>
+ * A timestamp representing an absolute time, without timezone information. The corresponding Java type is a
+ * java.util.Date. The underlying representation is a long representing the number of milliseconds since Unix epoch.
  */
 public class Timestamp {
     public static final String LOGICAL_NAME = "org.apache.kafka.connect.data.Timestamp";

@@ -28,7 +28,7 @@ import org.apache.kafka.common.requests.DescribeLogDirsResponse.LogDirInfo;
 
 /**
  * The result of the {@link AdminClient#describeLogDirs(Collection)} call.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

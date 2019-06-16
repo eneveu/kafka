@@ -63,12 +63,12 @@ public class LoginManager {
 
     /**
      * Returns an instance of `LoginManager` and increases its reference count.
-     *
+     * <p>
      * `release()` should be invoked when the `LoginManager` is no longer needed. This method will try to reuse an
      * existing `LoginManager` for the provided context type. If `jaasContext` was loaded from a dynamic config,
      * login managers are reused for the same dynamic config value. For `jaasContext` loaded from static JAAS
      * configuration, login managers are reused for static contexts with the same login context name.
-     *
+     * <p>
      * This is a bit ugly and it would be nicer if we could pass the `LoginManager` to `ChannelBuilders.create` and
      * shut it down when the broker or clients are closed. It's straightforward to do the former, but it's more
      * complicated to do the latter without making the consumer API more complex.
@@ -82,7 +82,6 @@ public class LoginManager {
      *                      chosen based on this mechanism.
      * @param defaultLoginClass Default login class to use if an override is not specified in `configs`
      * @param configs Config options used to configure `Login` if a new login manager is created.
-     *
      */
     public static LoginManager acquireLoginManager(JaasContext jaasContext, String saslMechanism,
                                                    Class<? extends Login> defaultLoginClass,

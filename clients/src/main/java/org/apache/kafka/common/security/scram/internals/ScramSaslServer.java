@@ -91,7 +91,6 @@ public class ScramSaslServer implements SaslServer {
      * to clients. But care should be taken to avoid including any information in the exception message that
      * should not be leaked to unauthenticated clients. It may be safer to throw {@link SaslException} in
      * most cases so that a standard error message is returned to clients.
-     * </p>
      */
     @Override
     public byte[] evaluateResponse(byte[] response) throws SaslException, SaslAuthenticationException {

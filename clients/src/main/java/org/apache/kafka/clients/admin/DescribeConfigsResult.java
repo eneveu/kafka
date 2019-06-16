@@ -28,7 +28,7 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * The result of the {@link KafkaAdminClient#describeConfigs(Collection)} call.
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving

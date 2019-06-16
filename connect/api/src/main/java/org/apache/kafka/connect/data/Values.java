@@ -43,16 +43,16 @@ import java.util.regex.Pattern;
 /**
  * Utility for converting from one Connect value to a different form. This is useful when the caller expects a value of a particular type
  * but is uncertain whether the actual value is one that isn't directly that type but can be converted into that type.
- *
- * <p>For example, a caller might expects a particular {@link org.apache.kafka.connect.header.Header} to contain an {@link Type#INT64}
+ * <p>
+ * For example, a caller might expects a particular {@link org.apache.kafka.connect.header.Header} to contain an {@link Type#INT64}
  * value, when in fact that header contains a string representation of a 32-bit integer. Here, the caller can use the methods in this
  * class to convert the value to the desired type:
  * <pre>
  *     Header header = ...
  *     long value = Values.convertToLong(header.schema(), header.value());
  * </pre>
- *
- * <p>This class is able to convert any value to a string representation as well as parse those string representations back into most of
+ * <p>
+ * This class is able to convert any value to a string representation as well as parse those string representations back into most of
  * the types. The only exception is {@link Struct} values that require a schema and thus cannot be parsed from a simple string.
  */
 public class Values {
@@ -197,8 +197,8 @@ public class Values {
      * will parse the string and its elements to infer the schemas for those elements. Thus, this method supports
      * arrays of other primitives and structured types. If the value is already an array (or list), this method simply casts and
      * returns it.
-     *
-     * <p>This method currently does not use the schema, though it may be used in the future.</p>
+     * <p>
+     * This method currently does not use the schema, though it may be used in the future.
      *
      * @param schema the schema for the value; may be null
      * @param value  the value to be converted; may be null
@@ -213,8 +213,8 @@ public class Values {
      * Convert the specified value to an {@link Type#MAP} value. If the value is a string representation of a map, this method
      * will parse the string and its entries to infer the schemas for those entries. Thus, this method supports
      * maps with primitives and structured keys and values. If the value is already a map, this method simply casts and returns it.
-     *
-     * <p>This method currently does not use the schema, though it may be used in the future.</p>
+     * <p>
+     * This method currently does not use the schema, though it may be used in the future.
      *
      * @param schema the schema for the value; may be null
      * @param value  the value to be converted; may be null
@@ -228,8 +228,8 @@ public class Values {
     /**
      * Convert the specified value to an {@link Type#STRUCT} value. Structs cannot be converted from other types, so this method returns
      * a struct only if the supplied value is a struct. If not a struct, this method throws an exception.
-     *
-     * <p>This method currently does not use the schema, though it may be used in the future.</p>
+     * <p>
+     * This method currently does not use the schema, though it may be used in the future.
      *
      * @param schema the schema for the value; may be null
      * @param value  the value to be converted; may be null
@@ -242,6 +242,7 @@ public class Values {
 
     /**
      * Convert the specified value to an {@link Time#SCHEMA time} value.
+     * <p>
      * Not supplying a schema may limit the ability to convert to the desired type.
      *
      * @param schema the schema for the value; may be null

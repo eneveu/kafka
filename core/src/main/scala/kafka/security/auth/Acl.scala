@@ -40,7 +40,6 @@ object Acl {
   /**
    *
    * @param bytes of acls json string
-   *
    * <p>
       {
         "version": 1,
@@ -53,7 +52,6 @@ object Acl {
           }
         ]
       }
-   * </p>
    *
    * @return
    */

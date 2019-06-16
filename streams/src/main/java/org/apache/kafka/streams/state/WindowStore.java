@@ -38,7 +38,7 @@ public interface WindowStore<K, V> extends StateStore, ReadOnlyWindowStore<K, V>
     /**
      * Use the current record timestamp as the {@code windowStartTimestamp} and
      * delegate to {@link WindowStore#put(Object, Object, long)}.
-     *
+     * <p>
      * It's highly recommended to use {@link WindowStore#put(Object, Object, long)} instead, as the record timestamp
      * is unlikely to be the correct windowStartTimestamp in general.
      *

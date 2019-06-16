@@ -133,7 +133,7 @@ object ClientQuotaManager {
 /**
  * Helper class that records per-client metrics. It is also responsible for maintaining Quota usage statistics
  * for all clients.
- * <p/>
+ * <p>
  * Quotas can be set at <user, client-id>, user or client-id levels. For a given client connection,
  * the most specific quota matching the connection will be applied. For example, if both a <user, client-id>
  * and a user quota match a connection, the <user, client-id> quota will be used. Otherwise, user quota takes

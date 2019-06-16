@@ -21,9 +21,10 @@ import java.util.Map;
 
 /**
  * An ordered map (LinkedHashMap) implementation for which the order is immutable.
+ * <p>
  * To accomplish this, all methods of removing mappings are disabled (they are marked
  * deprecated and throw an exception).
- *
+ * <p>
  * This class is final to prevent subclasses from violating the desired property.
  *
  * @param <K> The key type

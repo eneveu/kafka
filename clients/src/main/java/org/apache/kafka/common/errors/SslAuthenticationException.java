@@ -27,7 +27,6 @@ import javax.net.ssl.SSLException;
  * client certificates. Handshake failures could also indicate misconfigured
  * security including protocol/cipher suite mismatch, server certificate
  * authentication failure or server host name verification failure.
- * </p>
  */
 public class SslAuthenticationException extends AuthenticationException {
 

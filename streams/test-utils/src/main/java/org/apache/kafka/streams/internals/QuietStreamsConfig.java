@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * A {@link StreamsConfig} that does not log its configuration on construction.
- *
+ * <p>
  * This producer cleaner output for unit tests using the {@code test-utils},
  * since logging the config is not really valuable in this context.
  */

@@ -26,7 +26,7 @@ import java.util.Objects;
 
 /**
  * Represents a binding between a resource pattern and an access control entry.
- *
+ * <p>
  * The API for this class is still evolving and we may break compatibility in minor releases, if necessary.
  */
 @InterfaceStability.Evolving

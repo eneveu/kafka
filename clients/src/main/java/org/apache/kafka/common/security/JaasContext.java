@@ -40,7 +40,7 @@ public class JaasContext {
 
     /**
      * Returns an instance of this class.
-     *
+     * <p>
      * The context will contain the configuration specified by the JAAS configuration property
      * {@link SaslConfigs#SASL_JAAS_CONFIG} with prefix `listener.name.{listenerName}.{mechanism}.`
      * with listenerName and mechanism in lower case. The context `KafkaServer` will be returned
@@ -51,9 +51,8 @@ public class JaasContext {
      * <ol>
      *   <li>Lowercased listener name followed by a period and the string `KafkaServer`</li>
      *   <li>The string `KafkaServer`</li>
-     *  </ol>
+     * </ol>
      * If both are valid entries in the default JAAS configuration, the first option is chosen.
-     * </p>
      *
      * @throws IllegalArgumentException if listenerName or mechanism is not defined.
      */
@@ -72,11 +71,10 @@ public class JaasContext {
 
     /**
      * Returns an instance of this class.
-     *
+     * <p>
      * If JAAS configuration property @link SaslConfigs#SASL_JAAS_CONFIG} is specified,
      * the configuration object is created by parsing the property value. Otherwise, the default Configuration
      * is returned. The context name is always `KafkaClient`.
-     *
      */
     public static JaasContext loadClientContext(Map<String, ?> configs) {
         String globalContextName = GLOBAL_CONTEXT_NAME_CLIENT;

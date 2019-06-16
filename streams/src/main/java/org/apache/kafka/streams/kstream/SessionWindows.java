@@ -136,7 +136,7 @@ public final class SessionWindows {
     /**
      * Reject late events that arrive more than {@code afterWindowEnd}
      * after the end of its window.
-     *
+     * <p>
      * Note that new events may change the boundaries of session windows, so aggressive
      * close times can lead to surprising results in which a too-late event is rejected and then
      * a subsequent event moves the window boundary forward.

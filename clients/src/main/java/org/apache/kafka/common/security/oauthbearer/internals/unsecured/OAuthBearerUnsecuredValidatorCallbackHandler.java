@@ -69,7 +69,7 @@ import org.slf4j.LoggerFactory;
  * };
  * </pre>
  * It also recognizes {@link OAuthBearerExtensionsValidatorCallback} and validates every extension passed to it.
- *
+ * <p>
  * This class is the default when the SASL mechanism is OAUTHBEARER and no value
  * is explicitly set via the
  * {@code listener.name.sasl_[plaintext|ssl].oauthbearer.sasl.server.callback.handler.class}

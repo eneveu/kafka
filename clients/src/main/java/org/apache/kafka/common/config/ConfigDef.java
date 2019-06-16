@@ -38,16 +38,15 @@ import java.util.regex.Pattern;
  * This class is used for specifying the set of expected configurations. For each configuration, you can specify
  * the name, the type, the default value, the documentation, the group information, the order in the group,
  * the width of the configuration value and the name suitable for display in the UI.
- *
+ * <p>
  * You can provide special validation logic used for single configuration validation by overriding {@link Validator}.
- *
+ * <p>
  * Moreover, you can specify the dependents of a configuration. The valid values and visibility of a configuration
  * may change according to the values of other configurations. You can override {@link Recommender} to get valid
  * values and set visibility of a configuration given the current configuration values.
- *
- * <p/>
+ * <p>
  * To use the class:
- * <p/>
+ * <p>
  * <pre>
  * ConfigDef defs = new ConfigDef();
  *
@@ -69,7 +68,7 @@ import java.util.regex.Pattern;
  * List&lt;Config&gt; configs = defs.validate(props);
  * The {@link Config} contains updated configuration information given the current configuration values.
  * </pre>
- * <p/>
+ * <p>
  * This class can be used standalone or in combination with {@link AbstractConfig} which provides some additional
  * functionality for accessing configs.
  */
@@ -1284,7 +1283,7 @@ public class ConfigDef {
 
     /**
      * Get a list of configs sorted taking the 'group' and 'orderInGroup' into account.
-     *
+     * <p>
      * If grouping is not specified, the result will reflect "natural" order: listing required fields first, then ordering by importance, and finally by name.
      */
     private List<ConfigKey> sortedConfigs() {

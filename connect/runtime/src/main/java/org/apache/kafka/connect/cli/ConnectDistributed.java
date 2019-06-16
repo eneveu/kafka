@@ -45,13 +45,11 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * <p>
  * Command line utility that runs Kafka Connect in distributed mode. In this mode, the process joints a group of other workers
  * and work is distributed among them. This is useful for running Connect as a service, where connectors can be
  * submitted to the cluster to be automatically executed in a scalable, distributed fashion. This also allows you to
  * easily scale out horizontally, elastically adding or removing capacity simply by starting or stopping worker
  * instances.
- * </p>
  */
 public class ConnectDistributed {
     private static final Logger log = LoggerFactory.getLogger(ConnectDistributed.class);

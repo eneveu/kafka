@@ -37,7 +37,7 @@ public interface SessionStore<K, AGG> extends StateStore, ReadOnlySessionStore<K
     /**
      * Fetch any sessions with the matching key and the sessions end is &ge; earliestSessionEndTime and the sessions
      * start is &le; latestSessionStartTime
-     *
+     * <p>
      * This iterator must be closed after use.
      *
      * @param key the key to return sessions for
@@ -51,7 +51,7 @@ public interface SessionStore<K, AGG> extends StateStore, ReadOnlySessionStore<K
     /**
      * Fetch any sessions in the given range of keys and the sessions end is &ge; earliestSessionEndTime and the sessions
      * start is &le; latestSessionStartTime
-     *
+     * <p>
      * This iterator must be closed after use.
      *
      * @param keyFrom The first key that could be in the range

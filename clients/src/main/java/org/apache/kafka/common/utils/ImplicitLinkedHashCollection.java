@@ -28,21 +28,21 @@ import java.util.Set;
 
 /**
  * A memory-efficient hash set which tracks the order of insertion of elements.
- *
+ * <p>
  * Like java.util.LinkedHashSet, this collection maintains a linked list of elements.
  * However, rather than using a separate linked list, this collection embeds the next
  * and previous fields into the elements themselves.  This reduces memory consumption,
  * because it means that we only have to store one Java object per element, rather
  * than multiple.
- *
+ * <p>
  * The next and previous fields are stored as array indices rather than pointers.
  * This ensures that the fields only take 32 bits, even when pointers are 64 bits.
  * It also makes the garbage collector's job easier, because it reduces the number of
  * pointers that it must chase.
- *
+ * <p>
  * This class uses linear probing.  Unlike HashMap (but like HashTable), we don't force
  * the size to be a power of 2.  This saves memory.
- *
+ * <p>
  * This set does not allow null elements.  It does not have internal synchronization.
  */
 public class ImplicitLinkedHashCollection<E extends ImplicitLinkedHashCollection.Element> extends AbstractCollection<E> {
@@ -274,8 +274,9 @@ public class ImplicitLinkedHashCollection<E extends ImplicitLinkedHashCollection
 
     /**
      * Returns an iterator that will yield every element in the set.
+     * <p>
      * The elements will be returned in the order that they were inserted in.
-     *
+     * <p>
      * Do not modify the set while you are iterating over it (except by calling
      * remove on the iterator itself, of course.)
      */
@@ -294,7 +295,7 @@ public class ImplicitLinkedHashCollection<E extends ImplicitLinkedHashCollection
 
     /**
      * Find an element matching an example element.
-     *
+     * <p>
      * Using the element's hash code, we can look up the slot where it belongs.
      * However, it may not have ended up in exactly this slot, due to a collision.
      * Therefore, we must search forward in the array until we hit a null, before
@@ -575,7 +576,7 @@ public class ImplicitLinkedHashCollection<E extends ImplicitLinkedHashCollection
      * those elements were inserted in the same order. Because
      * {@code ImplicitLinkedHashCollectionListIterator} iterates over the elements
      * in insertion order, it is sufficient to call {@code valuesList.equals}.
-     *
+     * <p>
      * Note that {@link ImplicitLinkedHashMultiCollection} does not override
      * {@code equals} and uses this method as well. This means that two
      * {@code ImplicitLinkedHashMultiCollection} objects will be considered equal even
@@ -624,7 +625,7 @@ public class ImplicitLinkedHashCollection<E extends ImplicitLinkedHashCollection
      * vice-versa. The list supports element removal, which removes the corresponding
      * element from the collection, but does not support the {@code add} or
      * {@code set} operations.
-     *
+     * <p>
      * The list is implemented as a circular linked list, so all index-based
      * operations, such as {@code List.get}, run in O(n) time.
      *

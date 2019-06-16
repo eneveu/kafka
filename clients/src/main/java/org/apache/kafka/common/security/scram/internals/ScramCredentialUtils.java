@@ -30,7 +30,6 @@ import org.apache.kafka.common.security.scram.ScramCredential;
  * <pre>
  *   salt=<i>salt</i>,stored_key=<i>stored_key</i>,server_key=<i>server_key</i>,iterations=<i>iterations</i>
  * </pre>
- *
  */
 public final class ScramCredentialUtils {
     private static final String SALT = "salt";

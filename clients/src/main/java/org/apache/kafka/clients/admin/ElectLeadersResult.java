@@ -27,7 +27,7 @@ import org.apache.kafka.common.internals.KafkaFutureImpl;
 
 /**
  * The result of {@link AdminClient#electLeaders(ElectionType, Set, ElectLeadersOptions)}
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  */
 @InterfaceStability.Evolving
@@ -39,9 +39,9 @@ final public class ElectLeadersResult {
     }
 
     /**
-     * <p>Get a future for the topic partitions for which a leader election was attempted.
+     * Get a future for the topic partitions for which a leader election was attempted.
      * If the election succeeded then the value for a topic partition will be the empty Optional.
-     * Otherwise the election failed and the Optional will be set with the error.</p>
+     * Otherwise the election failed and the Optional will be set with the error.
      */
     public KafkaFuture<Map<TopicPartition, Optional<Throwable>>> partitions() {
         return electionFuture;

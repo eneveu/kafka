@@ -47,7 +47,6 @@ import org.slf4j.LoggerFactory;
  * the Subject's public credential and password as the private credential.
  *
  * @see <a href="https://tools.ietf.org/html/rfc5802">RFC 5802</a>
- *
  */
 public class ScramSaslClient implements SaslClient {
 

@@ -19,17 +19,14 @@ package org.apache.kafka.connect.connector;
 import java.util.Map;
 
 /**
- * <p>
  * Tasks contain the code that actually copies data to/from another system. They receive
  * a configuration from their parent Connector, assigning them a fraction of a Kafka Connect job's work.
  * The Kafka Connect framework then pushes/pulls data from the Task. The Task must also be able to
  * respond to reconfiguration requests.
- * </p>
  * <p>
  * Task only contains the minimal shared functionality between
  * {@link org.apache.kafka.connect.source.SourceTask} and
  * {@link org.apache.kafka.connect.sink.SinkTask}.
- * </p>
  */
 public interface Task {
     /**

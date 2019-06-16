@@ -352,7 +352,7 @@ public class StreamsPartitionAssignor implements PartitionAssignor, Configurable
     }
     /*
      * This assigns tasks to consumer clients in the following steps.
-     *
+     * <p>
      * 0. check all repartition source topics and use internal topic manager to make sure
      *    they have been created with the right number of partitions.
      *

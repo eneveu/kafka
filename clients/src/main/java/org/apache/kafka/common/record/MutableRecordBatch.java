@@ -35,7 +35,7 @@ public interface MutableRecordBatch extends RecordBatch {
      * timestamps of all the records contained in the batch. To avoid recompression, the record fields are not updated
      * by this method, but clients ignore them if the timestamp time is log append time. Note that firstTimestamp is not
      * updated by this method.
-     *
+     * <p>
      * This typically requires re-computation of the batch's CRC.
      *
      * @param timestampType The timestamp type

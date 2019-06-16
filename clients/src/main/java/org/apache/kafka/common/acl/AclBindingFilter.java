@@ -26,7 +26,7 @@ import java.util.Objects;
 
 /**
  * A filter which can match AclBinding objects.
- *
+ * <p>
  * The API for this class is still evolving and we may break compatibility in minor releases, if necessary.
  */
 @InterfaceStability.Evolving

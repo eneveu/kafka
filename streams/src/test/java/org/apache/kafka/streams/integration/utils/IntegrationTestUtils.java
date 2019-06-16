@@ -390,7 +390,7 @@ public class IntegrationTestUtils {
 
     /**
      * Wait for streams to "finish", based on the consumer lag metric.
-     *
+     * <p>
      * Caveats:
      * - Inputs must be finite, fully loaded, and flushed before this method is called
      * - expectedPartitions is the total number of partitions to watch the lag on, including both input and internal.

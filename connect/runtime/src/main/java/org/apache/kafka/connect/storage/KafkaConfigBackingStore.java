@@ -58,12 +58,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * <p>
  * Provides persistent storage of Kafka Connect connector configurations in a Kafka topic.
- * </p>
  * <p>
  * This class manages both connector and task configurations. It tracks three types of configuration entries:
- * <p/>
  * 1. Connector config: map of string -> string configurations passed to the Connector class, with support for
  * expanding this format if necessary. (Kafka key: connector-[connector-id]).
  * These configs are *not* ephemeral. They represent the source of truth. If the entire Connect
@@ -81,18 +78,15 @@ import java.util.concurrent.TimeoutException;
  * is stored separately but they need to be applied together to ensure each partition is assigned
  * to a single task, this record also indicates that task configs for the specified connector
  * can be "applied" or "committed".
- * </p>
  * <p>
  * This configuration is expected to be stored in a *single partition* and *compacted* topic. Using a single partition
  * ensures we can enforce ordering on messages, allowing Kafka to be used as a write ahead log. Compaction allows
  * us to clean up outdated configurations over time. However, this combination has some important implications for
  * the implementation of this class and the configuration state that it may expose.
- * </p>
  * <p>
  * Connector configurations are independent of all other configs, so they are handled easily. Writing a single record
  * is already atomic, so these can be applied as soon as they are read. One connectors config does not affect any
  * others, and they do not need to coordinate with the connector's task configuration at all.
- * </p>
  * <p>
  * The most obvious implication for task configs is the need for the commit messages. Because Kafka does not
  * currently have multi-record transactions or support atomic batch record writes, task commit messages are required
@@ -102,7 +96,6 @@ import java.util.concurrent.TimeoutException;
  * partitions may be double-assigned because the old config and new config may use completely different assignments.
  * Therefore, when reading the log, we must buffer config updates for a connector's tasks and only apply atomically them
  * once a commit message has been read.
- * </p>
  * <p>
  * However, there are also further challenges. This simple buffering approach would work fine as long as the entire log was
  * always available, but we would like to be able to enable compaction so our configuration topic does not grow
@@ -113,7 +106,6 @@ import java.util.concurrent.TimeoutException;
  * commit-foo (2 tasks), task-foo-1-config, commit-foo (1 task)], we can end up with a compacted log containing
  * [connector-foo-config, task-foo-2-config, commit-foo (2 tasks), task-foo-1-config, commit-foo (1 task)]. When read
  * back, the first commit will see an invalid state because the first task-foo-1-config has been cleaned up.
- * </p>
  * <p>
  * Compaction can further complicate things if writing new task configs fails mid-write. Consider a similar scenario
  * as the previous one, but in this case both the first and second update will write 2 task configs. However, the
@@ -126,7 +118,6 @@ import java.util.concurrent.TimeoutException;
  * recover and write the updated config. Meanwhile, other workers may have seen the entire log; they will see the second
  * task-foo-1-config waiting to be applied, but will otherwise think everything is ok -- they have a valid set of task
  * configs for connector "foo".
- * </p>
  * <p>
  * Because we can encounter these inconsistencies and addressing them requires support from the rest of the system
  * (resolving the task configuration inconsistencies requires support from the connector instance to regenerate updated
@@ -134,12 +125,10 @@ import java.util.concurrent.TimeoutException;
  * This allows users of this class (i.e., Herder implementations) to take action to resolve any inconsistencies. These
  * inconsistencies should be rare (as described above, due to compaction combined with leader failures in the middle
  * of updating task configurations).
- * </p>
  * <p>
  * Note that the expectation is that this config storage system has only a single writer at a time.
  * The caller (Herder) must ensure this is the case. In distributed mode this will require forwarding config change
  * requests to the leader in the cluster (i.e. the worker group coordinated by the Kafka broker).
- * </p>
  * <p>
  * Since processing of the config log occurs in a background thread, callers must take care when using accessors.
  * To simplify handling this correctly, this class only exposes a mechanism to snapshot the current state of the cluster.
@@ -147,7 +136,6 @@ import java.util.concurrent.TimeoutException;
  * using a consistent snapshot and only update when it is safe. In particular, if task configs are updated which require
  * synchronization across workers to commit offsets and update the configuration, callbacks and updates during the
  * rebalance must be deferred.
- * </p>
  */
 public class KafkaConfigBackingStore implements ConfigBackingStore {
     private static final Logger log = LoggerFactory.getLogger(KafkaConfigBackingStore.class);

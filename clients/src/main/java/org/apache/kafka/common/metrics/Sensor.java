@@ -310,7 +310,7 @@ public final class Sensor {
      * and synchronized reporters may deadlock if Sensor lock is used for reading metrics values.
      * Note that Sensor object itself is used as a lock to protect the access to stats and metrics
      * while recording metric values, adding and deleting sensors.
-     * </p><p>
+     * <p>
      * Locking order (assume all MetricsReporter methods may be synchronized):
      * <ul>
      *   <li>Sensor#add: Sensor -> Metrics -> MetricsReporter</li>
@@ -318,7 +318,6 @@ public final class Sensor {
      *   <li>KafkaMetric#metricValue: MetricsReporter -> Sensor#metricLock</li>
      *   <li>Sensor#record: Sensor -> Sensor#metricLock</li>
      * </ul>
-     * </p>
      */
     private Object metricLock() {
         return metricLock;

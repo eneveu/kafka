@@ -30,7 +30,7 @@ import org.apache.kafka.common.internals.KafkaFutureImpl;
 
 /**
  * The result of {@link AdminClient#electPreferredLeaders(Collection, ElectPreferredLeadersOptions)}
- *
+ * <p>
  * The API of this class is evolving, see {@link AdminClient} for details.
  *
  * @deprecated Since 2.4.0. Use {@link AdminClient#electLeaders(ElectionType, Set, ElectLeadersOptions)}.
@@ -77,13 +77,13 @@ public class ElectPreferredLeadersResult {
     }
 
     /**
-     * <p>Get a future for the topic partitions for which a leader election
+     * Get a future for the topic partitions for which a leader election
      * was attempted. A partition will be present in this result if
-     * an election was attempted even if the election was not successful.</p>
-     *
-     * <p>This method is provided to discover the partitions attempted when
+     * an election was attempted even if the election was not successful.
+     * <p>
+     * This method is provided to discover the partitions attempted when
      * {@link AdminClient#electPreferredLeaders(Collection)} is called
-     * with a null {@code partitions} argument.</p>
+     * with a null {@code partitions} argument.
      */
     public KafkaFuture<Set<TopicPartition>> partitions() {
         final KafkaFutureImpl<Set<TopicPartition>> result = new KafkaFutureImpl<>();

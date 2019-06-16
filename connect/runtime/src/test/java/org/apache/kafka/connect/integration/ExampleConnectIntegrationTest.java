@@ -44,7 +44,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * An example integration test that demonstrates how to setup an integration test for Connect.
- * <p></p>
+ * <p>
  * The following test configures and executes up a sink connector pipeline in a worker, produces messages into
  * the source topic-partitions, and demonstrates how to check the overall behavior of the pipeline.
  */

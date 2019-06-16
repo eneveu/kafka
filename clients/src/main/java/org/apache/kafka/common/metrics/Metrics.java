@@ -464,7 +464,7 @@ public class Metrics implements Closeable {
     /**
      * Add a metric to monitor an object that implements measurable. This metric won't be associated with any sensor.
      * This is a way to expose existing values as metrics.
-     *
+     * <p>
      * This method is kept for binary compatibility purposes, it has the same behaviour as
      * {@link #addMetric(MetricName, MetricValueProvider)}.
      *
@@ -478,7 +478,7 @@ public class Metrics implements Closeable {
     /**
      * Add a metric to monitor an object that implements Measurable. This metric won't be associated with any sensor.
      * This is a way to expose existing values as metrics.
-     *
+     * <p>
      * This method is kept for binary compatibility purposes, it has the same behaviour as
      * {@link #addMetric(MetricName, MetricConfig, MetricValueProvider)}.
      *

@@ -43,31 +43,25 @@ public abstract class SourceTask implements Task {
     public abstract void start(Map<String, String> props);
 
     /**
-     * <p>
      * Poll this source task for new records. If no data is currently available, this method
      * should block but return control to the caller regularly (by returning {@code null}) in
      * order for the task to transition to the {@code PAUSED} state if requested to do so.
-     * </p>
      * <p>
      * The task will be {@link #stop() stopped} on a separate thread, and when that happens
      * this method is expected to unblock, quickly finish up any remaining processing, and
      * return.
-     * </p>
      *
      * @return a list of source records
      */
     public abstract List<SourceRecord> poll() throws InterruptedException;
 
     /**
-     * <p>
      * Commit the offsets, up to the offsets that have been returned by {@link #poll()}. This
      * method should block until the commit is complete.
-     * </p>
      * <p>
      * SourceTasks are not required to implement this functionality; Kafka Connect will record offsets
      * automatically. This hook is provided for systems that also need to store offsets internally
      * in their own system.
-     * </p>
      */
     public void commit() throws InterruptedException {
         // This space intentionally left blank.
@@ -78,7 +72,7 @@ public abstract class SourceTask implements Task {
      * trying to poll for new data and interrupt any outstanding poll() requests. It is not required that the task has
      * fully stopped. Note that this method necessarily may be invoked from a different thread than {@link #poll()} and
      * {@link #commit()}.
-     *
+     * <p>
      * For example, if a task uses a {@link java.nio.channels.Selector} to receive data over the network, this method
      * could set a flag that will force {@link #poll()} to exit immediately and invoke
      * {@link java.nio.channels.Selector#wakeup() wakeup()} to interrupt any ongoing requests.
@@ -87,14 +81,11 @@ public abstract class SourceTask implements Task {
     public abstract void stop();
 
     /**
-     * <p>
      * Commit an individual {@link SourceRecord} when the callback from the producer client is received, or if a record is filtered by a transformation.
-     * </p>
      * <p>
      * SourceTasks are not required to implement this functionality; Kafka Connect will record offsets
      * automatically. This hook is provided for systems that also need to store offsets internally
      * in their own system.
-     * </p>
      *
      * @param record {@link SourceRecord} that was successfully sent via the producer.
      * @throws InterruptedException

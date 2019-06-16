@@ -32,16 +32,13 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>
  * Manages offset commit scheduling and execution for SourceTasks.
- * </p>
  * <p>
  * Unlike sink tasks which directly manage their offset commits in the main poll() thread since
  * they drive the event loop and control (for all intents and purposes) the timeouts, source
  * tasks are at the whim of the connector and cannot be guaranteed to wake up on the necessary
  * schedule. Instead, this class tracks all the active tasks, their schedule for commits, and
  * ensures they are invoked in a timely fashion.
- * </p>
  */
 class SourceTaskOffsetCommitter {
     private static final Logger log = LoggerFactory.getLogger(SourceTaskOffsetCommitter.class);

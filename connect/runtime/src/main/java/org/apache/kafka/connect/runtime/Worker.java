@@ -76,13 +76,10 @@ import java.util.stream.Collectors;
 
 
 /**
- * <p>
  * Worker runs a (dynamic) set of tasks in a set of threads, doing the work of actually moving
  * data to/from Kafka.
- * </p>
  * <p>
  * Since each task has a dedicated thread, this is mainly just a container for them.
- * </p>
  */
 public class Worker {
     private static final Logger log = LoggerFactory.getLogger(Worker.class);

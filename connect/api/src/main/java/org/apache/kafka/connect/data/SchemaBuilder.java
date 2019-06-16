@@ -26,30 +26,26 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * SchemaBuilder provides a fluent API for constructing {@link Schema} objects. It allows you to set each of the
+ * properties for the schema and each call returns the SchemaBuilder so the calls can be chained. When nested types
+ * are required, use one of the predefined schemas from {@link Schema} or use a second SchemaBuilder inline.
  * <p>
- *     SchemaBuilder provides a fluent API for constructing {@link Schema} objects. It allows you to set each of the
- *     properties for the schema and each call returns the SchemaBuilder so the calls can be chained. When nested types
- *     are required, use one of the predefined schemas from {@link Schema} or use a second SchemaBuilder inline.
- * </p>
+ * Here is an example of building a struct schema:
+ * <pre>
+ * Schema dateSchema = SchemaBuilder.struct()
+ *     .name("com.example.CalendarDate").version(2).doc("A calendar date including month, day, and year.")
+ *     .field("month", Schema.STRING_SCHEMA)
+ *     .field("day", Schema.INT8_SCHEMA)
+ *     .field("year", Schema.INT16_SCHEMA)
+ *     .build();
+ * </pre>
  * <p>
- *     Here is an example of building a struct schema:
- *     <pre>
- *     Schema dateSchema = SchemaBuilder.struct()
- *         .name("com.example.CalendarDate").version(2).doc("A calendar date including month, day, and year.")
- *         .field("month", Schema.STRING_SCHEMA)
- *         .field("day", Schema.INT8_SCHEMA)
- *         .field("year", Schema.INT16_SCHEMA)
- *         .build();
- *     </pre>
- * </p>
- * <p>
- *     Here is an example of using a second SchemaBuilder to construct complex, nested types:
- *     <pre>
- *     Schema userListSchema = SchemaBuilder.array(
- *         SchemaBuilder.struct().name("com.example.User").field("username", Schema.STRING_SCHEMA).field("id", Schema.INT64_SCHEMA).build()
- *     ).build();
- *     </pre>
- * </p>
+ * Here is an example of using a second SchemaBuilder to construct complex, nested types:
+ * <pre>
+ * Schema userListSchema = SchemaBuilder.array(
+ *     SchemaBuilder.struct().name("com.example.User").field("username", Schema.STRING_SCHEMA).field("id", Schema.INT64_SCHEMA).build()
+ * ).build();
+ * </pre>
  */
 public class SchemaBuilder implements Schema {
     private static final String TYPE_FIELD = "type";
@@ -226,7 +222,7 @@ public class SchemaBuilder implements Schema {
 
     /**
      * Create a SchemaBuilder for the specified type.
-     *
+     * <p>
      * Usually it will be simpler to use one of the variants like {@link #string()} or {@link #struct()}, but this form
      * can be useful when generating schemas dynamically.
      *

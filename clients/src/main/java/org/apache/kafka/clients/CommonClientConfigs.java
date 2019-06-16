@@ -144,7 +144,6 @@ public class CommonClientConfigs {
      *
      * @param config                    The config object.
      * @param parsedValues              The parsedValues as provided to postProcessParsedConfig.
-     *
      * @return                          The new values which have been set as described in postProcessParsedConfig.
      */
     public static Map<String, Object> postProcessReconnectBackoffConfigs(AbstractConfig config,

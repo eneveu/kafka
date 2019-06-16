@@ -25,17 +25,14 @@ import java.util.Map;
 import java.util.concurrent.Future;
 
 /**
- * <p>
  * OffsetBackingStore is an interface for storage backends that store key-value data. The backing
  * store doesn't need to handle serialization or deserialization. It only needs to support
  * reading/writing bytes. Since it is expected these operations will require network
  * operations, only bulk operations are supported.
- * </p>
  * <p>
  * Since OffsetBackingStore is a shared resource that may be used by many OffsetStorage instances
  * that are associated with individual tasks, the caller must be sure keys include information about the
  * connector so that the shared namespace does not result in conflicting keys.
- * </p>
  */
 public interface OffsetBackingStore {
 

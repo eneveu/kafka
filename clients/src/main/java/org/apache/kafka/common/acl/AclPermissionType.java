@@ -24,7 +24,7 @@ import java.util.Locale;
 
 /**
  * Represents whether an ACL grants or denies permissions.
- *
+ * <p>
  * The API for this class is still evolving and we may break compatibility in minor releases, if necessary.
  */
 @InterfaceStability.Evolving

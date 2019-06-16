@@ -26,7 +26,7 @@ class OrderedBytes {
     private static final int MIN_KEY_LENGTH = 1;
     /**
      * Returns the upper byte range for a key with a given fixed size maximum suffix
-     *
+     * <p>
      * Assumes the minimum key length is one byte
      */
     static Bytes upperRange(final Bytes key, final byte[] maxSuffix) {

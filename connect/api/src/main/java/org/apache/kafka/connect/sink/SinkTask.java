@@ -54,18 +54,12 @@ import java.util.Map;
 public abstract class SinkTask implements Task {
 
     /**
-     * <p>
-     * The configuration key that provides the list of topics that are inputs for this
-     * SinkTask.
-     * </p>
+     * The configuration key that provides the list of topics that are inputs for this SinkTask.
      */
     public static final String TOPICS_CONFIG = "topics";
 
     /**
-     * <p>
-     * The configuration key that provides a regex specifying which topics to include as inputs
-     * for this SinkTask.
-     * </p>
+     * The configuration key that provides a regex specifying which topics to include as inputs for this SinkTask.
      */
     public static final String TOPICS_REGEX_CONFIG = "topics.regex";
 
@@ -90,7 +84,7 @@ public abstract class SinkTask implements Task {
     /**
      * Put the records in the sink. Usually this should send the records to the sink asynchronously
      * and immediately return.
-     *
+     * <p>
      * If this operation fails, the SinkTask may throw a {@link org.apache.kafka.connect.errors.RetriableException} to
      * indicate that the framework should attempt to retry the same call again. Other exceptions will cause the task to
      * be stopped immediately. {@link SinkTaskContext#timeout(long)} can be used to set the maximum time before the
@@ -112,7 +106,7 @@ public abstract class SinkTask implements Task {
 
     /**
      * Pre-commit hook invoked prior to an offset commit.
-     *
+     * <p>
      * The default implementation simply invokes {@link #flush(Map)} and is thus able to assume all {@code currentOffsets} are safe to commit.
      *
      * @param currentOffsets the current offset state as of the last call to {@link #put(Collection)}},

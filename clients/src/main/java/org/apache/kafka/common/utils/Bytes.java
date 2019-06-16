@@ -106,7 +106,7 @@ public class Bytes implements Comparable<Bytes> {
      * Write a printable representation of a byte array. Non-printable
      * characters are hex escaped in the format \\x%02X, eg:
      * \x00 \x05 etc.
-     *
+     * <p>
      * This function is brought from org.apache.hadoop.hbase.util.Bytes
      *
      * @param b array to write out

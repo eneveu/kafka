@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * Represents a pattern that is used by ACLs to match zero or more
  * {@link org.apache.kafka.common.resource.Resource Resources}.
- *
+ * <p>
  * The API for this class is still evolving and we may break compatibility in minor releases, if necessary.
  */
 @InterfaceStability.Evolving

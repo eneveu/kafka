@@ -56,7 +56,7 @@ public class CreateAclsRequest extends AbstractRequest {
     /**
      * Version 1 adds RESOURCE_PATTERN_TYPE, to support more than just literal resource patterns.
      * For more info, see {@link PatternType}.
-     *
+     * <p>
      * Also, when the quota is violated, brokers will respond to a version 1 or later request before throttling.
      */
     private static final Schema CREATE_ACLS_REQUEST_V1 = new Schema(

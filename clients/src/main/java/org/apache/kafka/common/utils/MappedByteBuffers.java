@@ -37,7 +37,7 @@ import static java.lang.invoke.MethodType.methodType;
 
 /**
  * Utility methods for MappedByteBuffer implementations.
- *
+ * <p>
  * The unmap implementation was inspired by the one in Lucene's MMapDirectory.
  */
 public final class MappedByteBuffers {

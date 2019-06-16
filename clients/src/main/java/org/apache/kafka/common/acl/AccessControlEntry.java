@@ -23,7 +23,7 @@ import java.util.Objects;
 
 /**
  * Represents an access control entry.  ACEs are a tuple of principal, host, operation, and permissionType.
- *
+ * <p>
  * The API for this class is still evolving and we may break compatibility in minor releases, if necessary.
  */
 @InterfaceStability.Evolving

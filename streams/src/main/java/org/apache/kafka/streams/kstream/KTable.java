@@ -391,7 +391,7 @@ public interface KTable<K, V> {
 
     /**
      * Suppress some updates from this changelog stream, determined by the supplied {@link Suppressed} configuration.
-     *
+     * <p>
      * This controls what updates downstream table and stream operations will receive.
      *
      * @param suppressed Configuration object determining what, if any, updates to suppress
@@ -565,9 +565,8 @@ public interface KTable<K, V> {
      * This topic will be named "${applicationId}-&lt;name&gt;-repartition", where "applicationId" is user-specified in
      * {@link  StreamsConfig} via parameter {@link StreamsConfig#APPLICATION_ID_CONFIG APPLICATION_ID_CONFIG}, "&lt;name&gt;" is
      * an internally generated name, and "-repartition" is a fixed suffix.
-     *
+     * <p>
      * You can retrieve all generated internal topic names via {@link Topology#describe()}.
-     *
      * <p>
      * All data of this {@code KTable} will be redistributed through the repartitioning topic by writing all update
      * records to and rereading all updated records from it, such that the resulting {@link KGroupedTable} is partitioned
@@ -597,9 +596,8 @@ public interface KTable<K, V> {
      * This topic will be named "${applicationId}-&lt;name&gt;-repartition", where "applicationId" is user-specified in
      * {@link  StreamsConfig} via parameter {@link StreamsConfig#APPLICATION_ID_CONFIG APPLICATION_ID_CONFIG}, "&lt;name&gt;" is
      * an internally generated name, and "-repartition" is a fixed suffix.
-     *
+     * <p>
      * You can retrieve all generated internal topic names via {@link Topology#describe()}.
-     *
      * <p>
      * All data of this {@code KTable} will be redistributed through the repartitioning topic by writing all update
      * records to and rereading all updated records from it, such that the resulting {@link KGroupedTable} is partitioned
@@ -631,10 +629,8 @@ public interface KTable<K, V> {
      * This topic will be named "${applicationId}-&lt;name&gt;-repartition", where "applicationId" is user-specified in
      * {@link  StreamsConfig} via parameter {@link StreamsConfig#APPLICATION_ID_CONFIG APPLICATION_ID_CONFIG},  "&lt;name&gt;" is
      * either provided via {@link org.apache.kafka.streams.kstream.Grouped#as(String)} or an internally generated name.
-     *
      * <p>
      * You can retrieve all generated internal topic names via {@link Topology#describe()}.
-     *
      * <p>
      * All data of this {@code KTable} will be redistributed through the repartitioning topic by writing all update
      * records to and rereading all updated records from it, such that the resulting {@link KGroupedTable} is partitioned

@@ -147,7 +147,7 @@ public enum CompressionType {
 
     /**
      * Wrap bufferStream with an OutputStream that will compress data with this CompressionType.
-     *
+     * <p>
      * Note: Unlike {@link #wrapForInput}, {@link #wrapForOutput} cannot take {@link ByteBuffer}s directly.
      * Currently, {@link MemoryRecordsBuilder#writeDefaultBatchHeader()} and {@link MemoryRecordsBuilder#writeLegacyCompressedWrapperHeader()}
      * write to the underlying buffer in the given {@link ByteBufferOutputStream} after the compressed data has been written.

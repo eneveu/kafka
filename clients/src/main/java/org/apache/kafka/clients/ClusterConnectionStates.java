@@ -31,7 +31,6 @@ import java.util.Map;
 
 /**
  * The state of our connection to each node in the cluster.
- *
  */
 final class ClusterConnectionStates {
     private final long reconnectBackoffInitMs;
