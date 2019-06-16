@@ -256,18 +256,19 @@ object AdminUtils extends Logging with AdminUtilities {
       .groupBy { case (rack, _) => rack }
       .map { case (rack, rackAndIdList) => (rack, rackAndIdList.map { case (_, id) => id }.sorted) }
   }
- /**
-  * Add partitions to existing topic with optional replica assignment
-  *
-  * @param zkUtils Zookeeper utilities
-  * @param topic Topic for adding partitions to
-  * @param existingAssignment A map from partition id to its assigned replicas
-  * @param allBrokers All brokers in the cluster
-  * @param numPartitions Number of partitions to be set
-  * @param replicaAssignment Manual replica assignment, or none
-  * @param validateOnly If true, validate the parameters without actually adding the partitions
-  * @return the updated replica assignment
-  */
+
+  /**
+   * Add partitions to existing topic with optional replica assignment
+   *
+   * @param zkUtils Zookeeper utilities
+   * @param topic Topic for adding partitions to
+   * @param existingAssignment A map from partition id to its assigned replicas
+   * @param allBrokers All brokers in the cluster
+   * @param numPartitions Number of partitions to be set
+   * @param replicaAssignment Manual replica assignment, or none
+   * @param validateOnly If true, validate the parameters without actually adding the partitions
+   * @return the updated replica assignment
+   */
   @deprecated("This method is deprecated and will be replaced by kafka.zk.AdminZkClient.", "1.1.0")
   def addPartitions(zkUtils: ZkUtils,
                     topic: String,
