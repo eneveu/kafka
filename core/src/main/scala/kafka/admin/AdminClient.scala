@@ -336,7 +336,7 @@ class AdminClient(val time: Time,
 
 }
 
-/*
+/**
  * CompositeFuture assumes that the future object in the futures list does not raise error
  */
 class CompositeFuture[T](time: Time,

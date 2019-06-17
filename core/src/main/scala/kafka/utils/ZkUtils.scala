@@ -76,7 +76,7 @@ object ZkUtils {
     new ZkUtils(zkClient, zkConnection, isZkSecurityEnabled)
   }
 
-  /*
+  /**
    * Used in tests
    */
   def apply(zkClient: ZkClient, isZkSecurityEnabled: Boolean): ZkUtils = {
@@ -108,7 +108,7 @@ object ZkUtils {
     }
   }
 
-  /*
+  /**
    * Get calls that only depend on static paths
    */
   def getTopicPath(topic: String): String = {
